@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pagamento | Raízes do Nordeste</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="header">
+      <h2>🌱 Raízes do Nordeste</h2>
+      <nav>
+        <a href="unidades.html">📍 Unidades</a>
+        <a href="cardapio.html">🍽️ Cardápio</a>
+        <a href="carrinho.html">🛒 Carrinho</a>
+        <a href="fidelidade.html">⭐ Fidelidade</a>
+        <a href="index.html" onclick="localStorage.removeItem('raizes_currentUser')">Sair</a>
+      </nav>
+    </header>
+
+    <div class="form-container" style="max-width: 600px; margin: 0 auto;">
+      <h2 style="text-align: center; color: var(--primary);">💳 Checkout Seguro</h2>
+      <p style="text-align: center; margin-bottom: 2rem; color: #666;">Ambiente de simulação para pagamento externo.</p>
+
+      <form id="payment-form">
+        <label style="font-weight: bold; color: var(--text-dark);">Número do Cartão de Crédito</label>
+        <input type="text" value="4111 1111 1111 1111" readonly style="background: #f5f5f5; cursor: not-allowed;">
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+          <div>
+            <label style="font-weight: bold; color: var(--text-dark);">Validade</label>
+            <input type="text" value="12/28" readonly style="background: #f5f5f5; cursor: not-allowed;">
+          </div>
+          <div>
+            <label style="font-weight: bold; color: var(--text-dark);">CVV</label>
+            <input type="text" value="123" readonly style="background: #f5f5f5; cursor: not-allowed;">
+          </div>
+        </div>
+
+        <div class="lgpd-box" style="margin-top: 15px; border-left-color: #27ae60;">
+          <label style="cursor: pointer; display: flex; align-items: flex-start; gap: 10px;">
+            <input type="checkbox" id="lgpd-consent" required style="width: auto; margin: 0;">
+            <span style="font-size: 0.9rem;">Autorizo o processamento deste pagamento e confirmo que li a <strong>Política de Privacidade (LGPD)</strong>.</span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn" style="margin-top: 15px;">Confirmar Pagamento</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/mock.js"></script>
+  <script>
+    document.getElementById('payment-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const cart = JSON.parse(localStorage.getItem('raizes_cart')) || [];
+        if (cart.length === 0) {
+            alert('O carrinho está vazio!');
+            window.location.href = 'cardapio.html';
+            return;
+        }
+
+        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0) + 5;
+        const user = JSON.parse(localStorage.getItem('raizes_currentUser'));
+        
+        const orderId = 'PED-' + Math.floor(Math.random() * 10000);
+        const newOrder = { id: orderId, items: cart, total: total, status: 'recebido' };
+        
+        let orders = JSON.parse(localStorage.getItem('raizes_orders')) || [];
+        orders.push(newOrder);
+        localStorage.setItem('raizes_orders', JSON.stringify(orders));
+
+        if (user) {
+            const pontosGanhos = Math.floor(total / 10);
+            user.points = (user.points || 0) + pontosGanhos;
+            
+            let users = JSON.parse(localStorage.getItem('raizes_users')) || [];
+            const userIndex = users.findIndex(u => u.email === user.email);
+            if(userIndex > -1) users[userIndex] = user;
+            
+            localStorage.setItem('raizes_users', JSON.stringify(users));
+            localStorage.setItem('raizes_currentUser', JSON.stringify(user));
+            
+            alert(`Pagamento aprovado! Ganhou ${pontosGanhos} pontos de fidelidade.`);
+        } else {
+            alert('Pagamento aprovado!');
+        }
+
+        localStorage.removeItem('raizes_cart');
+        window.location.href = `pedido.html?id=${orderId}`;
+    });
+  </script>
+</body>
+</html>

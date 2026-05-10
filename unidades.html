@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unidades | Raízes do Nordeste</title>
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="header">
+        <h2>🌱 Raízes do Nordeste</h2>
+        <nav>
+            <a href="unidades.html">📍 Unidades</a>
+            <a href="cardapio.html">🍽️ Cardápio</a>
+            <a href="carrinho.html">🛒 Carrinho (<span id="cart-badge">0</span>)</a>
+            <a href="fidelidade.html">⭐ Fidelidade</a>
+            <a href="index.html" onclick="localStorage.removeItem('raizes_currentUser')">Sair</a>
+        </nav>
+    </header>
+
+    <h1 style="color: var(--primary); margin-bottom: 0.5rem; text-align: center;">📍 Onde você está?</h1>
+    <p style="text-align: center; margin-bottom: 2rem; color: #666;">Selecione a unidade mais próxima para ver o cardápio disponível.</p>
+
+    <div id="units-list" class="product-grid">
+      </div>
+  </div>
+
+  <script src="js/mock.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const units = [
+            { id: 'matriz', name: 'Unidade Matriz', address: 'Rua do Sol, 123 - Centro', hours: '08:00 às 22:00' },
+            { id: 'praia', name: 'Unidade Beira-Mar', address: 'Av. Litorânea, 456 - Orla', hours: '10:00 às 23:00' },
+            { id: 'shopping', name: 'Unidade Shopping', address: 'Piso L3 - Praça de Alimentação', hours: '10:00 às 22:00' }
+        ];
+        
+        const container = document.getElementById('units-list');
+        
+        container.innerHTML = units.map(u => `
+            <div class="product-card" style="text-align: center;">
+                <h3>${u.name}</h3>
+                <p style="color: #666; margin: 10px 0; min-height: 40px;">${u.address}</p>
+                <p style="font-size: 0.85rem; color: var(--accent); margin-bottom: 15px;">🕒 ${u.hours}</p>
+                <button class="btn" onclick="selectUnit('${u.id}')">Fazer Pedido Aqui</button>
+            </div>
+        `).join('');
+    });
+
+    function selectUnit(id) {
+        localStorage.setItem('raizes_selectedUnit', id);
+        window.location.href = 'cardapio.html';
+    }
+  </script>
+</body>
+</html>

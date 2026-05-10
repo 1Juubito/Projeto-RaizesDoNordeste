@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cardápio | Raízes do Nordeste</title>
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="header">
+        <h2>🌱 Raízes do Nordeste</h2>
+        <nav>
+            <a href="unidades.html">📍 Unidades</a>
+            <a href="cardapio.html">🍽️ Cardápio</a>
+            <a href="carrinho.html">🛒 Carrinho (<span id="cart-badge">0</span>)</a>
+            <a href="fidelidade.html">⭐ Fidelidade</a>
+            <a href="index.html" onclick="localStorage.removeItem('raizes_currentUser')">Sair</a>
+        </nav>
+    </header>
+
+    <h1 style="color: var(--primary); margin-bottom: 1.5rem;">O que vai ser hoje?</h1>
+    
+    <div id="product-list" class="product-grid">
+      </div>
+  </div>
+
+  <script src="js/mock.js"></script>
+  <script src="js/cardapio.js"></script>
+</body>
+</html>

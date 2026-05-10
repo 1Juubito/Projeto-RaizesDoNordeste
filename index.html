@@ -3,16 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Raízes do Nordeste | O verdadeiro sabor do Sertão</title>
-  
+  <title>Raízes do Nordeste | Início</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
 
   <div class="split-left">
-    <h1>🌵 Raízes do Nordeste</h1>
-    <p>O tempero arretado que você respeita. Peça pelo Totem, App ou Web!</p>
+    <h1>🌱 Raízes do Nordeste</h1>
+    <p>O autêntico sabor nordestino em qualquer tela. Cadastre-se e ganhe pontos em cada pedido!</p>
     <div class="badges">
       <span class="badge">🛡️ LGPD</span>
       <span class="badge">📱 Multi-Canal</span>
@@ -22,14 +21,39 @@
 
   <div class="split-right">
     <div class="form-container">
-      <h2>Acessar Conta</h2>
-      <form id="login-form">
-        <input type="email" placeholder="Seu e-mail">
-        <input type="password" placeholder="Sua senha">
-        <button type="submit" class="btn">Entrar</button>
+      <h2>Criar Conta</h2>
+      <form id="register-form">
+        <input type="text" id="reg-name" placeholder="Nome completo" required>
+        <input type="email" id="reg-email" placeholder="E-mail" required>
+        <input type="password" id="reg-pass" placeholder="Crie uma senha" required>
+        
+        <label style="font-size: 0.8rem; color: #666;">Canal de acesso:</label>
+        <select id="reg-channel">
+          <option value="web">Web (Desktop)</option>
+          <option value="app">App (Mobile)</option>
+          <option value="totem">Totem (Loja)</option>
+        </select>
+
+        <div class="lgpd-box">
+          <label>
+            <input type="checkbox" id="reg-lgpd" required> 
+            <span>Aceito a Política de Privacidade (LGPD). Prometemos usar seus dados apenas para o pedido e fidelidade!</span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn">Cadastrar e Pedir</button>
       </form>
     </div>
+
+    <div class="form-container" style="border-top-color: #e67e22;">
+      <h3>Já sou da casa</h3>
+      <form id="login-form">
+        <input type="email" id="login-email" placeholder="E-mail">
+        <input type="password" id="login-pass" placeholder="Senha">
+        <button type="submit" class="btn btn-outline">Entrar</button>
+      </form>
     </div>
+  </div>
 
   <script src="js/mock.js"></script>
   <script src="js/auth.js"></script>

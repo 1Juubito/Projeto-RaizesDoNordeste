@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrinho | Raízes do Nordeste</title>
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="header">
+        <h2>🌱 Raízes do Nordeste</h2>
+        <nav>
+            <a href="unidades.html">📍 Unidades</a>
+            <a href="cardapio.html">🍽️ Cardápio</a>
+            <a href="carrinho.html">🛒 Carrinho (<span id="cart-badge">0</span>)</a>
+            <a href="fidelidade.html">⭐ Fidelidade</a>
+            <a href="index.html" onclick="localStorage.removeItem('raizes_currentUser')">Sair</a>
+        </nav>
+    </header>
+
+    <h1 style="color: var(--primary); margin-bottom: 1.5rem;">O Seu Pedido</h1>
+
+    <div class="cart-layout">
+      <div class="cart-items" id="cart-items-container">
+        </div>
+
+      <div class="cart-summary">
+        <h3 style="color: var(--primary); margin-bottom: 1rem;">Resumo</h3>
+        <p style="display: flex; justify-content: space-between; margin-bottom: 5px;"><span>Subtotal:</span> <span id="subtotal">R$ 0,00</span></p>
+        <p style="display: flex; justify-content: space-between;"><span>Taxa de Entrega:</span> <span>R$ 5,00</span></p>
+        <hr style="border: 0; border-top: 1px solid #ddd; margin: 15px 0;">
+        <h2 style="display: flex; justify-content: space-between; color: var(--accent);"><span>Total:</span> <span id="total">R$ 0,00</span></h2>
+        
+        <br>
+        <button class="btn" onclick="checkout()">Simular Pagamento</button>
+        <div class="lgpd-box" style="margin-top: 15px; border-left-color: #27ae60;">
+          <p>🔒 <strong>Transação Segura (LGPD)</strong><br>O pagamento é processado por uma gateway externa. Não guardamos os dados do seu cartão no nosso sistema.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/mock.js"></script>
+  <script src="js/carrinho.js"></script>
+</body>
+</html>
