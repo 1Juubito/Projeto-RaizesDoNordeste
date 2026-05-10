@@ -1,0 +1,119 @@
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+    font-family: 'Segoe UI', system-ui, sans-serif; 
+}
+
+:root {
+    --primary: #d35400;
+    --secondary: #e67e22;
+    --accent: #a04000;
+    --bg-light: #faf5f0;
+    --text-dark: #4a2e15;
+    --white: #ffffff;
+}
+
+body { 
+    background-color: var(--bg-light); 
+    color: var(--text-dark); 
+    display: flex; 
+    min-height: 100vh; 
+}
+
+.split-left { 
+    background: linear-gradient(135deg, var(--primary), var(--secondary)); 
+    color: var(--white); 
+    flex: 1; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    padding: 3rem; 
+    text-align: center; 
+}
+
+.split-right { 
+    flex: 1; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    padding: 4rem; 
+}
+
+.split-left h1 { 
+    font-size: 3.5rem; 
+    margin-bottom: 1rem; 
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2); 
+}
+
+.split-left p { 
+    font-size: 1.2rem; 
+    max-width: 400px; 
+    line-height: 1.6; 
+}
+
+.form-container { 
+    background: var(--white); 
+    padding: 2.5rem; 
+    border-radius: 12px; 
+    box-shadow: 0 10px 25px rgba(211, 84, 0, 0.1); 
+    margin-bottom: 2rem; 
+    border-top: 5px solid var(--primary); 
+}
+
+.form-container h2 { 
+    color: var(--primary); 
+    margin-bottom: 1.5rem; 
+}
+
+input, select { 
+    width: 100%; 
+    padding: 12px; 
+    margin-bottom: 15px; 
+    border: 1px solid #ddd; 
+    border-radius: 8px; 
+    font-size: 1rem; 
+}
+
+.btn { 
+    background: var(--primary); 
+    color: var(--white); 
+    border: none; 
+    padding: 14px; 
+    width: 100%; 
+    border-radius: 8px; 
+    font-size: 1.1rem; 
+    font-weight: bold; 
+    cursor: pointer; 
+    transition: 0.3s; 
+}
+
+.btn:hover { background: var(--accent); }
+
+.btn-outline { 
+    background: transparent; 
+    border: 2px solid var(--primary); 
+    color: var(--primary); 
+    margin-top: 10px; 
+}
+
+.lgpd-box { 
+    background: #fdf2e9; 
+    padding: 15px; 
+    border-radius: 8px; 
+    font-size: 0.85rem; 
+    margin-bottom: 15px; 
+    border-left: 3px solid var(--secondary); 
+}
+
+.badges { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 1rem; }
+.badge { 
+    background: #fdf2e9; 
+    color: var(--primary); 
+    padding: 6px 12px; 
+    border-radius: 20px; 
+    font-size: 0.8rem; 
+    font-weight: bold; 
+    border: 1px solid #fad7a1; 
+}
