@@ -127,21 +127,25 @@ function updateBadge() {
 
 document.addEventListener('DOMContentLoaded', () => {
     renderCart();
+    
     const btnCheckout = document.getElementById('btn-checkout');
     if (btnCheckout) {
         btnCheckout.addEventListener('click', () => {
             const cart = JSON.parse(localStorage.getItem('raizes_cart')) || [];
 
             if (cart.length === 0) {
-                alert('O seu carrinho está vazio! Escolha uma delícia no cardápio primeiro.');
+                showToast('O seu carrinho está vazio! Escolha uma delícia no cardápio primeiro.', 'warning');
                 return;
             }
 
             const user = JSON.parse(localStorage.getItem('raizes_currentUser'));
 
             if (!user) {
-                alert('Olha só, você ainda não se identificou! 🌵\n\nPara finalizar o pedido e acumular pontos no nosso Programa de Fidelidade, você precisa entrar na sua conta ou criar uma rapidinho.');
-                window.location.href = 'index.html';
+                showToast('Opa! Você precisa estar logado para finalizar o pedido e ganhar pontos! 🌵', 'warning');
+                
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 2500); 
                 return;
             }
 

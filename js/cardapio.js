@@ -46,7 +46,7 @@ window.addToCart = function(id, name, price) {
     }
 
     localStorage.setItem('raizes_cart', JSON.stringify(cart));
-    alert(`${quantity}x ${name} adicionado ao carrinho!`);
+    showToast(`${quantity}x ${name} adicionado ao carrinho!`, 'success');
     updateBadge();
 }
 
