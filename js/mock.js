@@ -1,17 +1,20 @@
 window.mockDB = {
-    users: JSON.parse(localStorage.getItem('users')) || [],
-    orders: JSON.parse(localStorage.getItem('orders')) || [],
+    users: JSON.parse(localStorage.getItem('raizes_users')) || [],
+    orders: JSON.parse(localStorage.getItem('raizes_orders')) || [],
+    
     products: [
-        { id: 'm1', name: 'Tapioca de Charque', price: 22.90, description: 'Goma fresca com charque desfiado e queijo coalho derretido.', unitId: 'matriz' },
-        { id: 'm2', name: 'Cuscuz Turbinado', price: 18.90, description: 'Cuscuz de milho no vapor com ovo, calabresa e carne de sol.', unitId: 'matriz' },
-        { id: 'm3', name: 'Escondidinho de Macaxeira', price: 34.90, description: 'Creme de macaxeira com carne seca, gratinado com queijo.', unitId: 'matriz' },
-        { id: 'm4', name: 'Acarajé no Prato', price: 25.90, description: 'Acompanha vatapá, caruru, camarão seco e vinagrete.', unitId: 'matriz' },
-        { id: 'm5', name: 'Suco de Cajá', price: 8.90, description: 'Copo 400ml da fruta natural.', unitId: 'matriz' },
-        { id: 'm6', name: 'Cajuína Gelada', price: 7.50, description: 'Lata 330ml bem gelada.', unitId: 'matriz' }
+        { id: 'p1', name: 'Baião de Dois', price: 28.90, description: 'Arroz, feijão verde, queijo coalho e temperos.', image: 'img/baiao.jpg' },
+        { id: 'p2', name: 'Carne de Sol', price: 45.90, description: 'Carne de sol acebolada com macaxeira cozida.', image: 'img/carne.jpg' },
+        { id: 'p3', name: 'Moqueca de Peixe', price: 52.90, description: 'Peixe fresco, leite de coco, azeite de dendê.', image: 'img/moqueca.jpg' },
+        { id: 'p4', name: 'Pastel Crocante', price: 12.90, description: 'Pastel crocante recheado com carne de sol e catupiry.', image: 'img/pastel.jpg' },
+        { id: 'p5', name: 'Suco de Caju', price: 7.90, description: 'Suco natural de caju.', image: 'img/suco.jpg' },
+        { id: 'p6', name: 'Refrigerante Lata', price: 6.50, description: 'Lata 350ml bem gelada.', image: 'img/refri.jpg' },
+        { id: 'p7', name: 'Pudim de Leite', price: 9.90, description: 'Pudim caseiro com calda de caramelo.', image: 'img/pudim.jpg' },
+        { id: 'p8', name: 'Cartola', price: 14.90, description: 'Manga, queijo coalho e canela.', image: 'img/cartola.jpg' }
     ]
 };
 
 window.saveMock = () => {
-    localStorage.setItem('users', JSON.stringify(window.mockDB.users));
-    localStorage.setItem('orders', JSON.stringify(window.mockDB.orders));
+    localStorage.setItem('raizes_users', JSON.stringify(window.mockDB.users));
+    localStorage.setItem('raizes_orders', JSON.stringify(window.mockDB.orders));
 };

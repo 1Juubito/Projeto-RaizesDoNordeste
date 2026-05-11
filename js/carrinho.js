@@ -6,10 +6,18 @@ function renderCart() {
     const cart = JSON.parse(localStorage.getItem('raizes_cart')) || [];
     const container = document.getElementById('cart-items-container');
 
+    if (!container) return;
+
     if (cart.length === 0) {
-        container.innerHTML = `<p style="text-align:center; padding: 2rem;">Seu carrinho está vazio. <br><br><a href="cardapio.html" class="btn" style="display:inline-block; width:auto;">Bora pedir algo?</a></p>`;
+        container.innerHTML = `
+            <p class="cart-empty">
+                Seu carrinho está vazio. <br>
+                <a href="cardapio.html" class="btn btn-inline">Bora pedir algo?</a>
+            </p>
+        `;
         document.getElementById('subtotal').textContent = 'R$ 0,00';
         document.getElementById('total').textContent = 'R$ 0,00';
+        updateBadge();
         return;
     }
 
@@ -20,25 +28,30 @@ function renderCart() {
         subtotal += itemTotal;
         return `
             <div class="cart-item">
-                <div style="flex: 2; text-align: left;">
-                    <strong style="font-size: 1.1rem; color: var(--text-dark);">${item.name}</strong><br>
-                    <span style="color: #666; font-size: 0.9rem;">R$ ${item.price.toFixed(2)} / un</span>
+                <div class="cart-item-info">
+                    <strong class="cart-item-title">${item.name}</strong>
+                    <span class="cart-item-price">R$ ${item.price.toFixed(2)} / un</span>
                 </div>
-                <div class="qty-controls" style="flex: 1; text-align: center;">
+                <div class="qty-controls">
                     <button onclick="updateQty(${index}, -1)">-</button>
-                    <span style="margin: 0 15px; font-weight: bold; font-size: 1.1rem;">${item.quantity}</span>
+                    <span class="qty-number">${item.quantity}</span>
                     <button onclick="updateQty(${index}, 1)">+</button>
                 </div>
-                <div style="flex: 1; text-align: right; font-weight: bold; color: var(--accent); font-size: 1.1rem;">
+                <div class="cart-item-total">
                     R$ ${itemTotal.toFixed(2)}
                 </div>
-                <button onclick="removeItem(${index})" style="background: none; border: none; cursor: pointer; font-size: 1.5rem; color: var(--primary); margin-left: 15px;" title="Remover item">🗑️</button>
+                <button class="btn-remove" onclick="removeItem(${index})" title="Remover item">🗑️</button>
             </div>
         `;
     }).join('');
 
-    document.getElementById('subtotal').textContent = `R$ ${subtotal.toFixed(2)}`;
-    document.getElementById('total').textContent = `R$ ${(subtotal + 5).toFixed(2)}`;
+    const subtotalEl = document.getElementById('subtotal');
+    const totalEl = document.getElementById('total');
+    
+    if (subtotalEl) subtotalEl.textContent = `R$ ${subtotal.toFixed(2)}`;
+    if (totalEl) totalEl.textContent = `R$ ${(subtotal + 5).toFixed(2)}`;
+    
+    updateBadge();
 }
 
 function updateQty(index, change) {
@@ -63,11 +76,15 @@ function removeItem(index) {
 function checkout() {
     const cart = JSON.parse(localStorage.getItem('raizes_cart')) || [];
     if (cart.length === 0) {
-        alert('Adiciona itens ao cardápio antes de finalizar!');
+        alert('Adicione itens ao carrinho antes de finalizar!');
         return;
     }
-    
-    alert('A redirecionar para o gateway de pagamento externo...');
-    
     window.location.href = 'pagamento.html';
+}
+
+function updateBadge() {
+    const cart = JSON.parse(localStorage.getItem('raizes_cart')) || [];
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    const badge = document.getElementById('cart-badge');
+    if(badge) badge.textContent = totalItems;
 }
