@@ -247,3 +247,24 @@ input, select { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px sol
 .guest-link:hover {
     color: var(--accent);
 }
+
+.promo-alert {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.promo-alert.warning {
+    background-color: #fff3e0;
+    color: #e65100;
+}
+
+.discount-line {
+    color: #27ae60;
+    font-weight: bold;
+}

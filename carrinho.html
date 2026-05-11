@@ -27,16 +27,28 @@
       <div class="cart-items" id="cart-items-container">
         </div>
 
-      <div class="cart-summary">
-        <h3>Resumo</h3>
-        <p><span>Subtotal:</span> <span id="subtotal">R$ 0,00</span></p>
-        <p><span>Taxa de Entrega:</span> <span>R$ 5,00</span></p>
-        <h2><span>Total:</span> <span id="total">R$ 0,00</span></h2>
+        <div class="cart-summary">
+          <h3>Resumo</h3>
+
+          <p id="promo-alert" class="promo-alert" style="display: none;"></p>
+
+          <p><span>Subtotal:</span> <span id="subtotal">R$ 0,00</span></p>
+          <p><span>Taxa de Entrega:</span> <span id="frete">R$ 5,00</span></p>
         
-        <br>
-        <button class="btn" id="btn-checkout">Simular Pagamento</button>
+          <p id="linha-desconto" class="discount-line" style="display: none;">
+          <span>Desconto Especial (10%):</span> <span id="desconto">- R$ 0,00</span>
+          </p>
+        
+          <hr class="cart-hr"> 
+        
+          <h2><span>Total:</span> <span id="total">R$ 0,00</span></h2>
+        
+          <br>
+          <button class="btn" id="btn-checkout">Simular Pagamento</button>
+        
         <div class="lgpd-box">
-          <p>🔒 <strong>Transação Segura (LGPD)</strong><br>O pagamento é processado por uma gateway externa. Não guardamos os dados do seu cartão no nosso sistema.</p>
+          <p>🔒 <strong>Transação Segura (LGPD)</strong><br>
+          O pagamento é processado por uma gateway externa. Não guardamos os dados do seu cartão no nosso sistema.</p>
         </div>
       </div>
     </div>

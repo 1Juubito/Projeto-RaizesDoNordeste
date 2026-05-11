@@ -16,7 +16,10 @@ function renderCart() {
             </p>
         `;
         document.getElementById('subtotal').textContent = 'R$ 0,00';
+        document.getElementById('frete').textContent = 'R$ 0,00';
         document.getElementById('total').textContent = 'R$ 0,00';
+        document.getElementById('linha-desconto').style.display = 'none';
+        document.getElementById('promo-alert').style.display = 'none';
         updateBadge();
         return;
     }
@@ -45,11 +48,44 @@ function renderCart() {
         `;
     }).join('');
 
-    const subtotalEl = document.getElementById('subtotal');
-    const totalEl = document.getElementById('total');
-    
-    if (subtotalEl) subtotalEl.textContent = `R$ ${subtotal.toFixed(2)}`;
-    if (totalEl) totalEl.textContent = `R$ ${(subtotal + 5).toFixed(2)}`;
+    let taxaEntrega = 5.00;
+    let desconto = 0;
+    const metaPromocao = 70.00;
+
+    const promoAlert = document.getElementById('promo-alert');
+    const linhaDesconto = document.getElementById('linha-desconto');
+    const freteEl = document.getElementById('frete');
+
+    if (subtotal >= metaPromocao) {
+        taxaEntrega = 0;
+        desconto = subtotal * 0.10;
+        
+        promoAlert.textContent = '🎉 Parabéns! Você ganhou Frete Grátis e 10% de desconto!';
+        promoAlert.className = 'promo-alert';
+        promoAlert.style.display = 'block';
+        
+        linhaDesconto.style.display = 'flex';
+        document.getElementById('desconto').textContent = `- R$ ${desconto.toFixed(2)}`;
+        freteEl.textContent = 'Grátis';
+        freteEl.style.color = '#27ae60';
+        freteEl.style.fontWeight = 'bold';
+    } else {
+        const falta = metaPromocao - subtotal;
+        
+        promoAlert.textContent = `Faltam R$ ${falta.toFixed(2)} para ganhar Frete Grátis e 10% OFF!`;
+        promoAlert.className = 'promo-alert warning';
+        promoAlert.style.display = 'block';
+        
+        linhaDesconto.style.display = 'none';
+        freteEl.textContent = `R$ ${taxaEntrega.toFixed(2)}`;
+        freteEl.style.color = 'inherit';
+        freteEl.style.fontWeight = 'normal';
+    }
+
+    const totalFinal = subtotal - desconto + taxaEntrega;
+
+    document.getElementById('subtotal').textContent = `R$ ${subtotal.toFixed(2)}`;
+    document.getElementById('total').textContent = `R$ ${totalFinal.toFixed(2)}`;
     
     updateBadge();
 }
