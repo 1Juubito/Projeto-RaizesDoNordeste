@@ -88,3 +88,28 @@ function updateBadge() {
     const badge = document.getElementById('cart-badge');
     if(badge) badge.textContent = totalItems;
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    renderCart();
+    const btnCheckout = document.getElementById('btn-checkout');
+    if (btnCheckout) {
+        btnCheckout.addEventListener('click', () => {
+            const cart = JSON.parse(localStorage.getItem('raizes_cart')) || [];
+
+            if (cart.length === 0) {
+                alert('O seu carrinho está vazio! Escolha uma delícia no cardápio primeiro.');
+                return;
+            }
+
+            const user = JSON.parse(localStorage.getItem('raizes_currentUser'));
+
+            if (!user) {
+                alert('Olha só, você ainda não se identificou! 🌵\n\nPara finalizar o pedido e acumular pontos no nosso Programa de Fidelidade, você precisa entrar na sua conta ou criar uma rapidinho.');
+                window.location.href = 'index.html';
+                return;
+            }
+
+            window.location.href = 'pagamento.html';
+        });
+    }
+});
