@@ -58,4 +58,26 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 2000);
         });
     }
+
+    const btnEsqueci = document.getElementById('btn-esqueci');
+    
+    if (btnEsqueci) {
+        btnEsqueci.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            const emailField = document.getElementById('login-email').value;
+            
+            if (!emailField) {
+                showToast('Por favor, digite seu e-mail no campo acima para recuperar a senha.', 'warning');
+                document.getElementById('login-email').focus();
+            } else {
+                showToast('Verificando servidor...', 'warning');
+                
+                setTimeout(() => {
+                    showToast(`Um link de recuperação foi enviado para ${emailField}! 📧`, 'success');
+                    document.getElementById('login-pass').focus();
+                }, 1200);
+            }
+        });
+    }
 });

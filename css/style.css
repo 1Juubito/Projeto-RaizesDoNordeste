@@ -497,6 +497,7 @@ input, select { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px sol
 .form-row {
     display: flex;
     gap: 15px;
+    align-items: flex-end;
 }
 
 .form-row .form-group {
@@ -507,5 +508,34 @@ input, select { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px sol
     .form-row {
         flex-direction: column;
         gap: 0;
+        align-items: stretch;
     }
+}
+
+.security-divider {
+    margin: 20px 0;
+    border: 0;
+    border-top: 1px solid #ddd;
+}
+
+.security-title {
+    margin-bottom: 15px;
+    color: var(--primary);
+}
+
+.forgot-password-container {
+    text-align: right;
+    margin-top: -10px;
+    margin-bottom: 15px;
+}
+
+.forgot-password-link {
+    font-size: 0.85rem;
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.forgot-password-link:hover {
+    text-decoration: underline;
 }

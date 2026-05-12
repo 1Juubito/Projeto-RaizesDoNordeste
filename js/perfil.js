@@ -19,6 +19,17 @@ document.addEventListener('DOMContentLoaded', () => {
         formPerfil.addEventListener('submit', (e) => {
             e.preventDefault();
 
+            const novaSenha = document.getElementById('perfil-senha').value;
+            const confirmaSenha = document.getElementById('perfil-confirma-senha').value;
+
+            if (novaSenha !== '') {
+                if (novaSenha !== confirmaSenha) {
+                    showToast('As senhas não coincidem! Tente novamente.', 'error');
+                    return;
+                }
+                user.password = novaSenha;
+            }
+
             user.name = document.getElementById('perfil-nome').value;
             user.cpf = document.getElementById('perfil-cpf').value;
             user.nascimento = document.getElementById('perfil-nascimento').value;
@@ -34,7 +45,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 localStorage.setItem('raizes_users', JSON.stringify(users));
             }
 
-            showToast('Perfil atualizado com sucesso! 🌵', 'success');
+            document.getElementById('perfil-senha').value = '';
+            document.getElementById('perfil-confirma-senha').value = '';
+
+            showToast('Perfil e dados de segurança atualizados! 🌵', 'success');
         });
     }
 });

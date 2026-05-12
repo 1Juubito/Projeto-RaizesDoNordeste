@@ -51,11 +51,21 @@
 
   <div class="form-container login-panel">
           <h3>Já sou da casa</h3>
-          <form id="login-form">
-            <input type="email" id="login-email" placeholder="E-mail">
-            <input type="password" id="login-pass" placeholder="Senha">
-            <button type="submit" class="btn btn-outline">Entrar</button>
-          </form>
+          <form id="login-form" class="auth-form">
+            <div class="form-group">
+                <input type="email" id="login-email" placeholder="E-mail" required>
+            </div>
+            
+            <div class="form-group">
+                <input type="password" id="login-pass" placeholder="Sua senha secreta" required>
+            </div>
+
+            <div class="forgot-password-container">
+                <a href="#" id="btn-esqueci" class="forgot-password-link">Esqueci minha senha</a>
+            </div>
+
+            <button type="submit" class="btn btn-full">Entrar</button>
+        </form>
         </div>
 
         <div class="guest-link-container">
