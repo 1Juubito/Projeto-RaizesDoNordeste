@@ -639,3 +639,12 @@ input, select { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px sol
     font-size: 0.85rem;
     color: #888;
 }
+
+.hidden {
+    display: none !important;
+}
+
+.frete-gratis-text {
+    color: #27ae60 !important;
+    font-weight: bold !important;
+}

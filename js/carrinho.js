@@ -1,12 +1,12 @@
-document.addEventListener('DOMContentLoaded', () => {
-    renderCart();
-});
-
 function renderCart() {
     const cart = JSON.parse(localStorage.getItem('raizes_cart')) || [];
     const container = document.getElementById('cart-items-container');
 
     if (!container) return;
+
+    const promoAlert = document.getElementById('promo-alert');
+    const linhaDesconto = document.getElementById('linha-desconto');
+    const freteEl = document.getElementById('frete');
 
     if (cart.length === 0) {
         container.innerHTML = `
@@ -16,10 +16,12 @@ function renderCart() {
             </div>
         `;
         document.getElementById('subtotal').textContent = 'R$ 0,00';
-        document.getElementById('frete').textContent = 'R$ 0,00';
+        freteEl.textContent = 'R$ 0,00';
         document.getElementById('total').textContent = 'R$ 0,00';
-        document.getElementById('linha-desconto').style.display = 'none';
-        document.getElementById('promo-alert').style.display = 'none';
+        
+        if (linhaDesconto) linhaDesconto.classList.add('hidden');
+        if (promoAlert) promoAlert.classList.add('hidden');
+        
         updateBadge();
         return;
     }
@@ -52,34 +54,28 @@ function renderCart() {
     let desconto = 0;
     const metaPromocao = 70.00;
 
-    const promoAlert = document.getElementById('promo-alert');
-    const linhaDesconto = document.getElementById('linha-desconto');
-    const freteEl = document.getElementById('frete');
-
     if (subtotal >= metaPromocao) {
         taxaEntrega = 0;
         desconto = subtotal * 0.10;
         
         promoAlert.textContent = '🎉 Parabéns! Você ganhou Frete Grátis e 10% de desconto!';
         promoAlert.className = 'promo-alert';
-        promoAlert.style.display = 'block';
         
-        linhaDesconto.style.display = 'flex';
+        linhaDesconto.classList.remove('hidden');
         document.getElementById('desconto').textContent = `- R$ ${desconto.toFixed(2)}`;
+        
         freteEl.textContent = 'Grátis';
-        freteEl.style.color = '#27ae60';
-        freteEl.style.fontWeight = 'bold';
+        freteEl.classList.add('frete-gratis-text');
     } else {
         const falta = metaPromocao - subtotal;
         
         promoAlert.textContent = `Faltam R$ ${falta.toFixed(2)} para ganhar Frete Grátis e 10% OFF!`;
         promoAlert.className = 'promo-alert warning';
-        promoAlert.style.display = 'block';
         
-        linhaDesconto.style.display = 'none';
+        linhaDesconto.classList.add('hidden');
+        
         freteEl.textContent = `R$ ${taxaEntrega.toFixed(2)}`;
-        freteEl.style.color = 'inherit';
-        freteEl.style.fontWeight = 'normal';
+        freteEl.classList.remove('frete-gratis-text');
     }
 
     const totalFinal = subtotal - desconto + taxaEntrega;
