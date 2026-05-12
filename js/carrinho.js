@@ -10,10 +10,10 @@ function renderCart() {
 
     if (cart.length === 0) {
         container.innerHTML = `
-            <p class="cart-empty">
-                Seu carrinho está vazio. <br>
+            <div class="empty-cart">
+                <p>Seu carrinho está vazio.</p>
                 <a href="cardapio.html" class="btn btn-inline">Bora pedir algo?</a>
-            </p>
+            </div>
         `;
         document.getElementById('subtotal').textContent = 'R$ 0,00';
         document.getElementById('frete').textContent = 'R$ 0,00';

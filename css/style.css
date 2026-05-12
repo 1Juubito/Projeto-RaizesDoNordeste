@@ -540,14 +540,38 @@ input, select { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px sol
     text-decoration: underline;
 }
 
-.units-grid {
-    margin-top: 40px;
-    padding-top: 15px;
+.subtitle-container {
+    text-align: center;
+    margin-bottom: 30px;
 }
 
-.page-subtitle, 
 .units-subtitle {
-    margin-bottom: 20px;
+    display: inline-block;
+    background-color: #fff8f5;
+    color: var(--primary);
+    padding: 10px 25px;
+    border-radius: 30px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(211, 84, 0, 0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
     position: relative;
     z-index: 10;
+}
+
+.empty-cart {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 350px;
+    gap: 20px; 
+    text-align: center;
+}
+
+.empty-cart p {
+    font-size: 1.1rem;
+    color: #666;
+    margin: 0;
 }
