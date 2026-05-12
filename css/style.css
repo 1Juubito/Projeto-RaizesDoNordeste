@@ -335,3 +335,34 @@ input, select { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px sol
 @keyframes fadeOut {
     to { opacity: 0; transform: translateY(20px); }
 }
+
+.category-filters {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.btn-filter {
+    background-color: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    padding: 8px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.btn-filter:hover, 
+.btn-filter.active {
+    background-color: var(--primary);
+    color: var(--white);
+    box-shadow: 0 4px 10px rgba(211, 84, 0, 0.3);
+}
+
+.product-card.hidden {
+    display: none;
+}

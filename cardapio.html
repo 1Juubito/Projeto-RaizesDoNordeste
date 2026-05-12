@@ -27,8 +27,119 @@
       <h3>🎉 Promoção Raízes: Oxe, é vantagem demais!</h3>
       <p>Nas compras acima de <strong>R$ 70,00</strong>, você garante <strong>Frete Grátis</strong> e ainda leva <strong>10% de Desconto</strong> no valor do pedido!</p>
     </div>
+    <div class="category-filters" id="filters-container">
+        <button class="btn-filter active" data-filter="todos">Todos</button>
+        <button class="btn-filter" data-filter="prato">Pratos Principais</button>
+        <button class="btn-filter" data-filter="bebida">Bebidas</button>
+        <button class="btn-filter" data-filter="sobremesa">Sobremesas</button>
+    </div>
     
     <div id="product-list" class="product-grid">
+      
+      <div class="product-card" data-categoria="prato">
+        <img src="img/baiao.jpg" alt="Baião de Dois" class="card-image">
+        <div class="card-content">
+          <h3 class="card-title">Baião de Dois</h3>
+          <p class="card-desc">Arroz, feijão verde, queijo coalho e temperos.</p>
+          <div class="card-price">R$ 28.90</div>
+          <div class="card-actions">
+            <input type="number" id="qty-p1" value="1" min="1" max="10" class="qty-input">
+            <button class="btn btn-action btn-add-cart" data-id="p1" data-name="Baião de Dois" data-price="28.90">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-categoria="prato">
+        <img src="img/carne.jpg" alt="Carne de Sol" class="card-image">
+        <div class="card-content">
+          <h3 class="card-title">Carne de Sol</h3>
+          <p class="card-desc">Carne de sol acebolada com macaxeira cozida.</p>
+          <div class="card-price">R$ 45.90</div>
+          <div class="card-actions">
+            <input type="number" id="qty-p2" value="1" min="1" max="10" class="qty-input">
+            <button class="btn btn-action btn-add-cart" data-id="p2" data-name="Carne de Sol" data-price="45.90">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-categoria="prato">
+        <img src="img/moqueca.jpg" alt="Moqueca de Peixe" class="card-image">
+        <div class="card-content">
+          <h3 class="card-title">Moqueca de Peixe</h3>
+          <p class="card-desc">Peixe fresco, leite de coco, azeite de dendê.</p>
+          <div class="card-price">R$ 52.90</div>
+          <div class="card-actions">
+            <input type="number" id="qty-p3" value="1" min="1" max="10" class="qty-input">
+            <button class="btn btn-action btn-add-cart" data-id="p3" data-name="Moqueca de Peixe" data-price="52.90">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-categoria="prato">
+        <img src="img/pastel.jpg" alt="Pastel Crocante" class="card-image">
+        <div class="card-content">
+          <h3 class="card-title">Pastel Crocante</h3>
+          <p class="card-desc">Pastel crocante recheado com carne de sol e catupiry.</p>
+          <div class="card-price">R$ 12.90</div>
+          <div class="card-actions">
+            <input type="number" id="qty-p4" value="1" min="1" max="10" class="qty-input">
+            <button class="btn btn-action btn-add-cart" data-id="p4" data-name="Pastel Crocante" data-price="12.90">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-categoria="bebida">
+        <img src="img/suco.jpg" alt="Suco de Caju" class="card-image">
+        <div class="card-content">
+          <h3 class="card-title">Suco de Caju</h3>
+          <p class="card-desc">Suco natural de caju, bem geladinho.</p>
+          <div class="card-price">R$ 7.90</div>
+          <div class="card-actions">
+            <input type="number" id="qty-p5" value="1" min="1" max="10" class="qty-input">
+            <button class="btn btn-action btn-add-cart" data-id="p5" data-name="Suco de Caju" data-price="7.90">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-categoria="bebida">
+        <img src="img/refri.jpg" alt="Refrigerante Lata" class="card-image">
+        <div class="card-content">
+          <h3 class="card-title">Refrigerante Lata</h3>
+          <p class="card-desc">Lata 350ml bem gelada.</p>
+          <div class="card-price">R$ 6.50</div>
+          <div class="card-actions">
+            <input type="number" id="qty-p6" value="1" min="1" max="10" class="qty-input">
+            <button class="btn btn-action btn-add-cart" data-id="p6" data-name="Refrigerante Lata" data-price="6.50">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-categoria="sobremesa">
+        <img src="img/pudim.jpg" alt="Pudim de Leite" class="card-image">
+        <div class="card-content">
+          <h3 class="card-title">Pudim de Leite</h3>
+          <p class="card-desc">Pudim caseiro com calda de caramelo.</p>
+          <div class="card-price">R$ 9.90</div>
+          <div class="card-actions">
+            <input type="number" id="qty-p7" value="1" min="1" max="10" class="qty-input">
+            <button class="btn btn-action btn-add-cart" data-id="p7" data-name="Pudim de Leite" data-price="9.90">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-categoria="sobremesa">
+        <img src="img/cartola.jpg" alt="Cartola" class="card-image">
+        <div class="card-content">
+          <h3 class="card-title">Cartola</h3>
+          <p class="card-desc">Manga, queijo coalho e canela.</p>
+          <div class="card-price">R$ 14.90</div>
+          <div class="card-actions">
+            <input type="number" id="qty-p8" value="1" min="1" max="10" class="qty-input">
+            <button class="btn btn-action btn-add-cart" data-id="p8" data-name="Cartola" data-price="14.90">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
     </div>
     
   </div>
