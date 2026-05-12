@@ -16,30 +16,52 @@
             <a href="unidades.html">📍 Unidades</a>
             <a href="cardapio.html">🍽️ Cardápio</a>
             <a href="carrinho.html">🛒 Carrinho (<span id="cart-badge">0</span>)</a>
-            <a href="fidelidade.html">⭐ Fidelidade</a>
-            <a href="index.html" onclick="localStorage.removeItem('raizes_currentUser')">Sair</a>
+            <a href="fidelidade.html" class="active">⭐ Fidelidade</a>
+            <a href="#" id="btn-logout">Sair</a>
         </nav>
     </header>
 
-    <div class="form-container">
-      <h2>⭐ Programa de Fidelidade</h2>
-      <p style="margin-bottom: 2rem;">Acumule pontos em todas as compras e troque por delícias nordestinas!</p>
-      
-      <div>
-        <h3>Seus Pontos</h3>
-        <span id="user-points">0</span>
-        <p id="login-aviso">Faça login para ver seu saldo real.</p>
+    <h1 class="page-title">Clube Raízes ⭐</h1>
+
+    <div class="gamification-panel">
+      <div class="points-display">
+        <p>Seu saldo atual:</p>
+        <h2 id="user-points">0 <span class="points-unit">pts</span></h2>
+        <h3 id="user-tier">Nível: Iniciante</h3>
       </div>
 
-      <div class="lgpd-box">
-        <p><strong>Como funciona:</strong><br>A cada R$ 10,00 em compras, você ganha 1 ponto automaticamente. <br><br>🔒 <em>LGPD: Seus pontos estão atrelados ao seu cadastro e não compartilhamos seu histórico de compras com terceiros.</em></p>
+      <div class="progress-container">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+      <p class="progress-text" id="progress-text">Carregando...</p>
+
+      <div class="tiers-grid">
+        <div class="tier-card" id="tier-bronze">
+          <h3>🥉 Nível Bronze</h3>
+          <p>Até 100 pontos</p>
+          <hr class="tier-divider">
+          <p class="tier-advantage">Vantagem: <span style="font-weight: normal;">Acumula pontos normalmente.</span></p>
+        </div>
+
+        <div class="tier-card" id="tier-prata">
+          <h3>🥈 Nível Prata</h3>
+          <p>101 a 300 pontos</p>
+          <hr class="tier-divider">
+          <p class="tier-advantage">Vantagem: <span style="font-weight: normal;">Sobremesa grátis no mês de aniversário.</span></p>
+        </div>
+
+        <div class="tier-card" id="tier-ouro">
+          <h3>🥇 Nível Ouro</h3>
+          <p>Mais de 300 pontos</p>
+          <hr class="tier-divider">
+          <p class="tier-advantage">Vantagem: <span style="font-weight: normal;">Entrega sempre grátis e 5% OFF extra!</span></p>
+        </div>
       </div>
     </div>
   </div>
 
   <script src="js/mock.js"></script>
-  <script src="js/app.js"></script>
-  <script src="js/fidelidade.js"></script>
-</body>
+  <script src="js/app.js"></script> 
+  <script src="js/fidelidade.js"></script> 
 </body>
 </html>
