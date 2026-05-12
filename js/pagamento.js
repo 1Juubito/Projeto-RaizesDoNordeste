@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.removeItem('raizes_cart');
             
             setTimeout(() => {
-                window.location.href = `pedido.html?id=${orderId}`;
+                window.location.href = `rastreio.html`;
             }, 2500);
 
         }, 1500);

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rastreio do Pedido | Raízes do Nordeste</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="header">
+        <h2>🌱 Raízes do Nordeste</h2>
+        <nav>
+            <a href="unidades.html">📍 Unidades</a>
+            <a href="cardapio.html">🍽️ Cardápio</a>
+            <a href="carrinho.html">🛒 Carrinho (<span id="cart-badge">0</span>)</a>
+            <a href="fidelidade.html">⭐ Fidelidade</a>
+            <a href="perfil.html">👤 Perfil</a>
+            <a href="#" id="btn-logout">Sair</a>
+        </nav>
+    </header>
+
+    <h1 class="page-title">Acompanhe seu Pedido 🛵</h1>
+
+    <div class="tracking-container">
+        <h2 id="status-title" class="tracking-title">Preparando tudo por aqui!</h2>
+        <p id="status-message" class="tracking-message">Recebemos seu pedido e já vamos colocar a mão na massa.</p>
+
+        <div class="stepper-wrapper">
+            <div class="stepper-item active" id="step-0">
+                <div class="step-counter">📝</div>
+                <div class="step-name">Recebido</div>
+            </div>
+            
+            <div class="stepper-item" id="step-1">
+                <div class="step-counter">🍳</div>
+                <div class="step-name">Na Cozinha</div>
+            </div>
+            
+            <div class="stepper-item" id="step-2">
+                <div class="step-counter">🛵</div>
+                <div class="step-name">A Caminho</div>
+            </div>
+            
+            <div class="stepper-item" id="step-3">
+                <div class="step-counter">🏠</div>
+                <div class="step-name">Entregue</div>
+            </div>
+        </div>
+
+        <div id="reward-message" class="reward-box hidden">
+            <p>🎉 Pedido finalizado com sucesso! Os pontos desta compra já foram creditados na sua conta.</p>
+            <a href="fidelidade.html" class="btn btn-inline">Ver meus pontos</a>
+        </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script> 
+  <script src="js/rastreio.js"></script> 
+</body>
+</html>

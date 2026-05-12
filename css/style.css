@@ -648,3 +648,121 @@ input, select { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px sol
     color: #27ae60 !important;
     font-weight: bold !important;
 }
+
+.tracking-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--white);
+    padding: 3rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.tracking-title {
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.tracking-message {
+    color: #666;
+    margin-bottom: 40px;
+    font-size: 1.1rem;
+}
+
+.stepper-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.stepper-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    z-index: 2;
+}
+
+.stepper-item::before {
+    content: "";
+    position: absolute;
+    top: 25px;
+    left: -50%;
+    right: 50%;
+    height: 4px;
+    background: #e0e0e0;
+    z-index: -1;
+    transition: background 0.5s ease;
+}
+
+.stepper-item:first-child::before {
+    display: none;
+}
+
+.step-counter {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    transition: all 0.5s ease;
+}
+
+.step-name {
+    font-weight: bold;
+    color: #999;
+    font-size: 0.9rem;
+    transition: color 0.5s ease;
+}
+
+.stepper-item.completed .step-counter {
+    background: #27ae60;
+    color: white;
+}
+.stepper-item.completed::before {
+    background: #27ae60;
+}
+.stepper-item.completed .step-name {
+    color: #27ae60;
+}
+
+.stepper-item.active .step-counter {
+    background: var(--primary);
+    animation: pulse-orange 1.5s infinite;
+}
+.stepper-item.active .step-name {
+    color: var(--primary);
+}
+
+.reward-box {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 8px;
+    color: #166534;
+}
+
+.reward-box p {
+    margin-bottom: 15px;
+}
+
+@keyframes pulse-orange {
+    0% { box-shadow: 0 0 0 0 rgba(211, 84, 0, 0.5); }
+    70% { box-shadow: 0 0 0 15px rgba(211, 84, 0, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(211, 84, 0, 0); }
+}
+
+@media (max-width: 600px) {
+    .step-name { font-size: 0.75rem; }
+    .step-counter { width: 40px; height: 40px; font-size: 1.2rem; }
+    .stepper-item::before { top: 20px; }
+}
