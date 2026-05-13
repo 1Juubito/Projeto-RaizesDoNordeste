@@ -336,3 +336,19 @@ window.mascaraTelefone = function(valor) {
                 .slice(0, 15);
     }
 };
+
+function atualizarBadgeGlobal() {
+    const cart = JSON.parse(localStorage.getItem('raizes_cart')) || [];
+    
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    
+    const badge = document.getElementById('cart-badge');
+    
+    if (badge) {
+        badge.textContent = totalItems;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    atualizarBadgeGlobal();
+});

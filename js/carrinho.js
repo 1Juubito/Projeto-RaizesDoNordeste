@@ -22,7 +22,7 @@ function renderCart() {
         if (linhaDesconto) linhaDesconto.classList.add('hidden');
         if (promoAlert) promoAlert.classList.add('hidden');
         
-        updateBadge();
+        atualizarBadgeGlobal()
         return;
     }
 
@@ -105,7 +105,7 @@ function renderCart() {
     document.getElementById('subtotal').textContent = `R$ ${subtotal.toFixed(2)}`;
     document.getElementById('total').textContent = `R$ ${totalFinal.toFixed(2)}`;
     
-    updateBadge();
+    atualizarBadgeGlobal()
 }
 
 function updateQty(index, change) {
@@ -134,13 +134,6 @@ function checkout() {
         return;
     }
     window.location.href = 'pagamento.html';
-}
-
-function updateBadge() {
-    const cart = JSON.parse(localStorage.getItem('raizes_cart')) || [];
-    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-    const badge = document.getElementById('cart-badge');
-    if(badge) badge.textContent = totalItems;
 }
 
 document.addEventListener('DOMContentLoaded', () => {

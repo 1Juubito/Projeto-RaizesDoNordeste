@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    updateBadge();
+    atualizarBadgeGlobal();
 });
 
 function addToCart(id, name, price, quantity) {
@@ -63,13 +63,5 @@ function addToCart(id, name, price, quantity) {
         alert(`${quantity}x ${name} adicionado ao carrinho!`);
     }
     
-    updateBadge();
-}
-
-function updateBadge() {
-    const cart = JSON.parse(localStorage.getItem('raizes_cart')) || [];
-    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-    const badge = document.getElementById('cart-badge');
-    
-    if(badge) badge.textContent = totalItems;
+    atualizarBadgeGlobal();
 }
