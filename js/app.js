@@ -42,6 +42,10 @@ document.addEventListener('DOMContentLoaded', () => {
             usuarios.push(novoUsuario);
             localStorage.setItem('raizes_users', JSON.stringify(usuarios));
 
+            if (window.mockDB) {
+                window.mockDB.users = usuarios;
+            }
+
             showToast('Cadastro realizado! Redirecionando...', 'success');
             
             setTimeout(() => {
@@ -76,6 +80,83 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    const formPerfil = document.getElementById('form-perfil');
+
+    if (formPerfil) {
+        formPerfil.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const novoNome = document.getElementById('perfil-nome').value;
+            const novoCpf = document.getElementById('perfil-cpf').value;
+            const novoNascimento = document.getElementById('perfil-nascimento').value;
+            const novoTelefone = document.getElementById('perfil-telefone').value;
+
+            let userLogado = JSON.parse(localStorage.getItem('raizes_currentUser'));
+
+            if (userLogado) {
+                userLogado.nome = novoNome;
+                userLogado.cpf = novoCpf;
+                userLogado.nascimento = novoNascimento;
+                userLogado.telefone = novoTelefone;
+
+                localStorage.setItem('raizes_currentUser', JSON.stringify(userLogado));
+
+                const nameDisplay = document.getElementById('user-name-display');
+                if (nameDisplay) nameDisplay.textContent = novoNome;
+
+                let usuarios = JSON.parse(localStorage.getItem('raizes_users')) || [];
+                const index = usuarios.findIndex(u => u.email === userLogado.email);
+
+                if (index !== -1) {
+                    usuarios[index] = userLogado;
+                    localStorage.setItem('raizes_users', JSON.stringify(usuarios));
+
+                    if (window.mockDB) {
+                    window.mockDB.users = usuarios;
+                    }
+                    
+                    showToast('Dados atualizados com sucesso! 🌵', 'success');
+                } else {
+                    showToast('Erro ao atualizar banco de dados.', 'error');
+                }
+            }
+        });
+    }
+
+    const changePasswordForm = document.getElementById('change-password-form');
+    
+    if (changePasswordForm) {
+        changePasswordForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const novaSenha = document.getElementById('nova-senha').value;
+            const userLogado = JSON.parse(localStorage.getItem('raizes_currentUser'));
+
+            if (userLogado) {
+                userLogado.senha = novaSenha;
+                localStorage.setItem('raizes_currentUser', JSON.stringify(userLogado));
+
+                let usuarios = JSON.parse(localStorage.getItem('raizes_users')) || [];
+                
+                const index = usuarios.findIndex(u => u.email === userLogado.email);
+
+                if (index !== -1) {
+                    usuarios[index].senha = novaSenha;
+                    localStorage.setItem('raizes_users', JSON.stringify(usuarios));
+
+                    if (window.mockDB) {
+                    window.mockDB.users = usuarios;
+                    }
+                    
+                    showToast('Senha atualizada com sucesso! 🔐', 'success');
+                    changePasswordForm.reset();
+                } else {
+                    showToast('Erro ao encontrar usuário no banco.', 'error');
+                }
+            }
+        });
+    }
+
     const nameDisplay = document.getElementById('user-name-display');
     const emailDisplay = document.getElementById('user-email-display');
     const pointsDisplay = document.getElementById('user-points-display');
@@ -86,10 +167,20 @@ document.addEventListener('DOMContentLoaded', () => {
         if (userLogado) {
             nameDisplay.textContent = userLogado.nome;
             emailDisplay.textContent = userLogado.email;
-            
-            if (pointsDisplay) {
-                pointsDisplay.textContent = userLogado.points || 0;
-            }
+            if (pointsDisplay) pointsDisplay.textContent = userLogado.points || 0;
+
+            const inputNome = document.getElementById('perfil-nome');
+            const inputEmail = document.getElementById('perfil-email');
+            const inputCpf = document.getElementById('perfil-cpf');
+            const inputNascimento = document.getElementById('perfil-nascimento');
+            const inputTelefone = document.getElementById('perfil-telefone');
+
+            if (inputNome) inputNome.value = userLogado.nome || '';
+            if (inputEmail) inputEmail.value = userLogado.email || '';
+            if (inputCpf) inputCpf.value = userLogado.cpf || '';
+            if (inputNascimento) inputNascimento.value = userLogado.nascimento || '';
+            if (inputTelefone) inputTelefone.value = userLogado.telefone || '';
+
         } else {
             window.location.href = 'index.html';
         }

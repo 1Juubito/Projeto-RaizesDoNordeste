@@ -1013,3 +1013,35 @@ input, select { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px sol
     font-weight: bold;
     font-size: 0.95rem;
 }
+
+.security-card {
+    background: white;
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+}
+
+.security-card h3 {
+    color: #2c1e16;
+    margin-bottom: 1.5rem;
+}
+
+.security-form {
+    padding: 0;
+    box-shadow: none;
+    background: transparent;
+}
+
+.btn-security {
+    width: auto;
+    padding: 10px 20px;
+}
+
+.input-group input[type="date"] ~ label {
+    top: -20px;
+    font-size: 0.85rem;
+    color: var(--primary);
+    font-weight: bold;
+}
