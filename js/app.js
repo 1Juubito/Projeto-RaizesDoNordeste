@@ -80,6 +80,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    const inputCpf = document.getElementById('perfil-cpf');
+    const inputTelefone = document.getElementById('perfil-telefone');
+
+    if (inputCpf) {
+        inputCpf.addEventListener('input', (e) => {
+            e.target.value = window.mascaraCPF(e.target.value);
+        });
+    }
+
+    if (inputTelefone) {
+        inputTelefone.addEventListener('input', (e) => {
+            e.target.value = window.mascaraTelefone(e.target.value);
+        });
+    }
+
     const formPerfil = document.getElementById('form-perfil');
 
     if (formPerfil) {
@@ -177,9 +192,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (inputNome) inputNome.value = userLogado.nome || '';
             if (inputEmail) inputEmail.value = userLogado.email || '';
-            if (inputCpf) inputCpf.value = userLogado.cpf || '';
-            if (inputNascimento) inputNascimento.value = userLogado.nascimento || '';
-            if (inputTelefone) inputTelefone.value = userLogado.telefone || '';
+            
+            if (inputCpf) {
+                inputCpf.value = window.mascaraCPF(userLogado.cpf || '');
+                
+                if (userLogado.cpf && userLogado.cpf.length >= 11) {
+                    inputCpf.disabled = true;
+                    inputCpf.style.color = "#999";
+                }
+            }
+            
+            if (inputNascimento) {
+                inputNascimento.value = userLogado.nascimento || '';
+
+                if (userLogado.nascimento) {
+                    inputNascimento.disabled = true;
+                    inputNascimento.style.color = "#999";
+                }
+            }
+            
+            if (inputTelefone) {
+                inputTelefone.value = window.mascaraTelefone(userLogado.telefone || '');
+            }
 
         } else {
             window.location.href = 'index.html';
@@ -211,4 +245,29 @@ window.showToast = function(message, type = 'success') {
     setTimeout(() => {
         toast.remove();
     }, 3000);
+};
+
+window.mascaraCPF = function(valor) {
+    if (!valor) return '';
+    return valor
+        .replace(/\D/g, "")
+        .replace(/(\d{3})(\d)/, "$1.$2")
+        .replace(/(\d{3})(\d)/, "$1.$2")
+        .replace(/(\d{3})(\d{1,2})/, "$1-$2")
+        .slice(0, 14);
+};
+
+window.mascaraTelefone = function(valor) {
+    if (!valor) return '';
+    let v = valor.replace(/\D/g, "");
+    
+    if (v.length <= 10) {
+        return v.replace(/(\d{2})(\d)/, "($1) $2")
+                .replace(/(\d{4})(\d)/, "$1-$2")
+                .slice(0, 14);
+    } else {
+        return v.replace(/(\d{2})(\d)/, "($1) $2")
+                .replace(/(\d{5})(\d)/, "$1-$2")
+                .slice(0, 15);
+    }
 };
