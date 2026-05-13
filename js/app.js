@@ -76,6 +76,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    const nameDisplay = document.getElementById('user-name-display');
+    const emailDisplay = document.getElementById('user-email-display');
+    const pointsDisplay = document.getElementById('user-points-display');
+
+    if (nameDisplay && emailDisplay) {
+        const userLogado = JSON.parse(localStorage.getItem('raizes_currentUser'));
+
+        if (userLogado) {
+            nameDisplay.textContent = userLogado.nome;
+            emailDisplay.textContent = userLogado.email;
+            
+            if (pointsDisplay) {
+                pointsDisplay.textContent = userLogado.points || 0;
+            }
+        } else {
+            window.location.href = 'index.html';
+        }
+    }
+
 });
 
 window.showToast = function(message, type = 'success') {

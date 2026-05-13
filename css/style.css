@@ -967,3 +967,49 @@ input, select { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px sol
         overflow-y: auto;
     }
 }
+
+.profile-card {
+    background: white;
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.profile-avatar {
+    font-size: 4rem;
+    background: #faf8f5;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 3px solid var(--primary);
+}
+
+.profile-details h2 {
+    color: #2c1e16;
+    margin-bottom: 0.5rem;
+    font-size: 1.8rem;
+}
+
+.profile-details p {
+    color: #666;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.points-badge {
+    display: inline-block;
+    background: #fff4e6;
+    color: var(--primary);
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 0.95rem;
+}
