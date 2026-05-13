@@ -31,21 +31,43 @@ function renderCart() {
     container.innerHTML = cart.map((item, index) => {
         const itemTotal = item.price * item.quantity;
         subtotal += itemTotal;
+        
+        // Mapeamento de imagens baseado no nome do produto (Truque para não precisar gravar a URL no localStorage)
+        let imgSrc = 'img/baiao.jpg'; // Imagem padrão caso não encontre
+        if (item.name.includes('Carne')) imgSrc = 'img/carne.jpg';
+        if (item.name.includes('Moqueca')) imgSrc = 'img/moqueca.jpg';
+        if (item.name.includes('Pastel')) imgSrc = 'img/pastel.jpg';
+        if (item.name.includes('Suco')) imgSrc = 'img/suco.jpg';
+        if (item.name.includes('Refrigerante')) imgSrc = 'img/refri.jpg';
+        if (item.name.includes('Pudim')) imgSrc = 'img/pudim.jpg';
+        if (item.name.includes('Cartola')) imgSrc = 'img/cartola.jpg';
+
         return `
-            <div class="cart-item">
-                <div class="cart-item-info">
-                    <strong class="cart-item-title">${item.name}</strong>
-                    <span class="cart-item-price">R$ ${item.price.toFixed(2)} / un</span>
+            <div class="cart-item-modern">
+                <div class="cart-item-img-box">
+                    <img src="${imgSrc}" alt="${item.name}">
                 </div>
-                <div class="qty-controls">
-                    <button onclick="updateQty(${index}, -1)">-</button>
-                    <span class="qty-number">${item.quantity}</span>
-                    <button onclick="updateQty(${index}, 1)">+</button>
+                
+                <div class="cart-item-details">
+                    <strong class="item-title">${item.name}</strong>
+                    <span class="item-unit-price">R$ ${item.price.toFixed(2)}</span>
                 </div>
+                
+                <div class="cart-item-controls">
+                    <div class="qty-modern">
+                        <button onclick="updateQty(${index}, -1)" class="btn-qty">-</button>
+                        <span class="qty-value">${item.quantity}</span>
+                        <button onclick="updateQty(${index}, 1)" class="btn-qty">+</button>
+                    </div>
+                </div>
+                
                 <div class="cart-item-total">
                     R$ ${itemTotal.toFixed(2)}
                 </div>
-                <button class="btn-remove" onclick="removeItem(${index})" title="Remover item">🗑️</button>
+                
+                <button class="btn-remove-modern" onclick="removeItem(${index})" title="Remover item">
+                    &times;
+                </button>
             </div>
         `;
     }).join('');

@@ -25,32 +25,35 @@
     <h1 class="page-title">O Seu Pedido</h1>
 
     <div class="cart-layout">
-      <div class="cart-items" id="cart-items-container">
-        </div>
+      <div class="cart-items premium-card" id="cart-items-container">
+          </div>
 
-        <div class="cart-summary">
-          <h3>Resumo</h3>
+      <div class="cart-summary premium-card">
+          <h3 class="summary-title">Resumo do Pedido</h3>
 
-          <p id="promo-alert" class="promo-alert" hidden"></p>
+          <p id="promo-alert" class="promo-alert" hidden></p>
 
-          <p><span>Subtotal:</span> <span id="subtotal">R$ 0,00</span></p>
-          <p><span>Taxa de Entrega:</span> <span id="frete">R$ 5,00</span></p>
-        
-          <p id="linha-desconto" class="discount-line" hidden>
-          <span>Desconto Especial (10%):</span> <span id="desconto">- R$ 0,00</span>
-          </p>
+          <div class="summary-lines">
+              <p><span>Subtotal:</span> <span id="subtotal">R$ 0,00</span></p>
+              <p><span>Taxa de Entrega:</span> <span id="frete">R$ 5,00</span></p>
+              
+              <p id="linha-desconto" class="discount-line" hidden>
+                  <span>Desconto (10%):</span> <span id="desconto">- R$ 0,00</span>
+              </p>
+          </div>
         
           <hr class="cart-hr"> 
         
-          <h2><span>Total:</span> <span id="total">R$ 0,00</span></h2>
+          <div class="summary-total">
+              <span>Total:</span> <span id="total">R$ 0,00</span>
+          </div>
         
-          <br>
-          <button class="btn" id="btn-checkout">Simular Pagamento</button>
+          <button class="btn btn-full btn-checkout" id="btn-checkout">Simular Pagamento</button>
         
-        <div class="lgpd-box">
-          <p>🔒 <strong>Transação Segura (LGPD)</strong><br>
-          O pagamento é processado por uma gateway externa. Não guardamos os dados do seu cartão no nosso sistema.</p>
-        </div>
+          <div class="lgpd-box">
+              <p>🔒 <strong>Transação Segura</strong><br>
+              Seus dados são criptografados. Nós respeitamos a LGPD e não armazenamos dados de cartão de crédito nos nossos servidores.</p>
+          </div>
       </div>
     </div>
   </div>
