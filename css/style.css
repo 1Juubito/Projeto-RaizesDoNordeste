@@ -1720,3 +1720,14 @@ input, select { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px sol
         padding: 30px 20px;
     }
 }
+
+.input-group input:disabled {
+    cursor: not-allowed;
+    color: #999;
+    border-bottom-color: #e0e0e0;
+    background-color: transparent; 
+}
+
+.input-group input:disabled ~ label {
+    color: #999;
+}
