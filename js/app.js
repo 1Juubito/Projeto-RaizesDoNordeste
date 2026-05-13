@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            const novoUsuario = { nome, email, senha, points: 0 };
+            const novoUsuario = { nome, email, senha, points: 0, primeiroAcesso: true };
             usuarios.push(novoUsuario);
             localStorage.setItem('raizes_users', JSON.stringify(usuarios));
 
@@ -67,9 +67,22 @@ document.addEventListener('DOMContentLoaded', () => {
             const usuarioValido = usuarios.find(u => u.email === emailInput && u.senha === senhaInput);
 
             if (usuarioValido) {
+                if (usuarioValido.primeiroAcesso) {
+                    showToast(`Bem-vindo, ${usuarioValido.nome}! 🌵`, 'success');
+                    
+                    usuarioValido.primeiroAcesso = false;
+                    
+                    const index = usuarios.findIndex(u => u.email === usuarioValido.email);
+                    if(index !== -1) {
+                        usuarios[index] = usuarioValido;
+                        localStorage.setItem('raizes_users', JSON.stringify(usuarios));
+                        if(window.mockDB) window.mockDB.users = usuarios;
+                    }
+                } else {
+                    showToast(`Bem-vindo de volta, ${usuarioValido.nome}! 🌵`, 'success');
+                }
+
                 localStorage.setItem('raizes_currentUser', JSON.stringify(usuarioValido));
-                
-                showToast(`Bem-vindo de volta, ${usuarioValido.nome}! 🌵`, 'success');
                 
                 setTimeout(() => {
                     window.location.href = 'unidades.html'; 
