@@ -49,4 +49,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
         }, 1500);
     });
+
+
+    const ccNumInput = document.getElementById('cc-num');
+    const ccExpInput = document.getElementById('cc-exp');
+    const ccCvvInput = document.getElementById('cc-cvv');
+
+    if (ccNumInput) {
+        ccNumInput.addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, ''); 
+            value = value.replace(/(\d{4})(?=\d)/g, '$1 '); 
+            e.target.value = value;
+        });
+    }
+
+    if (ccExpInput) {
+        ccExpInput.addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, '');
+            
+            if (value.length > 2) {
+                value = value.substring(0, 2) + '/' + value.substring(2, 4);
+            }
+            e.target.value = value;
+        });
+    }
+
+    if (ccCvvInput) {
+        ccCvvInput.addEventListener('input', function (e) {
+            e.target.value = e.target.value.replace(/\D/g, '');
+        });
+    }
 });

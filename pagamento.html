@@ -20,33 +20,39 @@
       </nav>
     </header>
 
-    <div class="form-container">
-      <h2>💳 Checkout Seguro</h2>
-      <p>Ambiente de simulação para pagamento externo.</p>
+    <div class="premium-card payment-card">
+      <h3 class="summary-title payment-title">💳 Checkout Seguro</h3>
+      <p class="payment-subtitle">Ambiente de simulação para pagamento externo.</p>
 
-      <form id="payment-form">
-        <label>Número do Cartão de Crédito</label>
-        <input type="text" value="4111 1111 1111 1111" readonly>
+      <form id="payment-form" class="minimal-form payment-form-container">
         
-        <div>
-          <div>
-            <label>Validade</label>
-            <input type="text" value="12/28" readonly>
+        <div class="input-group">
+          <input type="text" id="cc-num" placeholder=" " maxlength="19" autocomplete="cc-number" required>
+          <label for="cc-num">Número do Cartão de Crédito</label>
+        </div>
+
+        <div class="form-row">
+          <div class="input-group">
+            <input type="text" id="cc-exp" placeholder=" " maxlength="5" autocomplete="cc-exp" required>
+            <label for="cc-exp">Validade (MM/AA)</label>
           </div>
-          <div>
-            <label>CVV</label>
-            <input type="text" value="123" readonly>
+          
+          <div class="input-group">
+            <input type="password" id="cc-cvv" placeholder=" " maxlength="4" autocomplete="cc-csc" required>
+            <label for="cc-cvv">CVV</label>
           </div>
         </div>
 
-        <div class="lgpd-box">
-          <label>
-            <input type="checkbox" id="lgpd-consent" required>
-            <span>Autorizo o processamento deste pagamento e confirmo que li a <strong>Política de Privacidade (LGPD)</strong>.</span>
+        <div class="modern-checkbox">
+          <input type="checkbox" id="lgpd-consent" required>
+          <label for="lgpd-consent">
+            Autorizo o processamento deste pagamento e confirmo que li a <strong>Política de Privacidade (LGPD)</strong>.
           </label>
         </div>
 
-        <button type="submit" class="btn">Confirmar Pagamento</button>
+        <button type="submit" class="btn btn-full btn-checkout payment-btn">
+          Confirmar Pagamento
+        </button>
       </form>
     </div>
   </div>

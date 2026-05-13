@@ -1478,3 +1478,61 @@ input, select { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px sol
         right: 0;
     }
 }
+
+.payment-card {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.payment-title {
+    margin-bottom: 5px;
+}
+
+.payment-subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 0.9rem;
+}
+
+.payment-form-container {
+    padding: 0;
+    box-shadow: none;
+    background: transparent;
+}
+
+.payment-btn {
+    margin-top: 20px;
+}
+
+.modern-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 15px;
+    margin-bottom: 25px;
+    padding: 15px;
+    background: #faf8f5;
+    border-radius: 12px;
+    border: 1px solid #eee;
+}
+
+.modern-checkbox input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    cursor: pointer;
+    accent-color: var(--primary);
+    flex-shrink: 0;
+}
+
+.modern-checkbox label {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.5;
+    cursor: pointer;
+}
+
+.modern-checkbox label strong {
+    color: #2c1e16;
+}
