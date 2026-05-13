@@ -1,29 +1,66 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const units = [
-        { id: 'centro', name: 'Fortaleza - Meireles', address: 'Av. Beira Mar, 2100', hours: 'Seg-Sáb: 11h às 22h', image: 'img/fortaleza.jpg' },
-        { id: 'aldeota', name: 'Recife - Boa Viagem', address: 'Av. Conselheiro Aguiar, 456', hours: 'Seg-Dom: 11h às 23h', image: 'img/recife.jpg' },
-        { id: 'meireles', name: 'Salvador - Rio Vermelho', address: 'Rua da Paciência, 789', hours: 'Ter-Dom: 12h às 22h', image: 'img/salvador.jpg' }
+    const unitsList = document.getElementById('units-list');
+
+    const unidades = [
+        {
+            id: 1,
+            nome: 'Matriz - Paranaguá',
+            endereco: 'Rua Faria Sobrinho, Centro Histórico',
+            horario: 'Aberto 24 horas',
+            distancia: '1.2 km',
+            aberto: true
+        },
+        {
+            id: 2,
+            nome: 'Praia - Matinhos',
+            endereco: 'Av. Atlântica, 1000 - Caiobá',
+            horario: '10:00 às 22:00',
+            distancia: '45 km',
+            aberto: true 
+        },
+        {
+            id: 3,
+            nome: 'Capital - Curitiba',
+            endereco: 'Av. Vicente Machado, Batel',
+            horario: '18:00 às 00:00',
+            distancia: '90 km',
+            aberto: false
+        }
     ];
 
-    const container = document.getElementById('units-list'); 
-    if (container) {
-        container.innerHTML = units.map(unit => `
-            <div class="product-card">
-                <img src="${unit.image}" alt="${unit.name}" class="card-image">
-                <div class="card-content">
-                    <h3 class="card-title">🏪 ${unit.name}</h3>
-                    <p class="card-info">📍 ${unit.address}</p>
-                    <p class="card-hours">🕒 ${unit.hours}</p>
-                    <button class="btn btn-action btn-select" data-id="${unit.id}">Selecionar unidade →</button>
+    if (unitsList) {
+        unitsList.innerHTML = unidades.map(unidade => `
+            <div class="unit-card">
+                <div class="unit-header">
+                    <h3 class="unit-title">${unidade.nome}</h3>
+                    <span class="unit-status ${unidade.aberto ? '' : 'closed'}">
+                        ${unidade.aberto ? '🟢 Aberto' : '🔴 Fechado'}
+                    </span>
+                </div>
+                
+                <div class="unit-info">
+                    <p>📍 ${unidade.endereco}</p>
+                    <p>🕒 ${unidade.horario}</p>
+                    <p>🛵 A aprox. ${unidade.distancia}</p>
+                </div>
+                
+                <div class="unit-action">
+                    <button class="btn btn-full" 
+                        ${unidade.aberto ? `onclick="selecionarUnidade(${unidade.id})"` : 'disabled style="background: #ccc; cursor: not-allowed;"'}>
+                        ${unidade.aberto ? 'Pedir nesta Unidade' : 'Fechado no momento'}
+                    </button>
                 </div>
             </div>
         `).join('');
-
-        document.querySelectorAll('.btn-select').forEach(btn => {
-            btn.addEventListener('click', () => {
-                localStorage.setItem('raizes_selectedUnit', btn.dataset.id); 
-                window.location.href = 'cardapio.html';
-            });
-        });
     }
 });
+
+window.selecionarUnidade = function(id) {
+    localStorage.setItem('raizes_unidade_atual', id);
+    
+    showToast('Unidade selecionada com sucesso! 🛒', 'success');
+    
+    setTimeout(() => {
+        window.location.href = 'cardapio.html';
+    }, 1000);
+};
