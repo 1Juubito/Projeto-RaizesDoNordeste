@@ -21,10 +21,10 @@
         </nav>
     </header>
 
-    <h1 class="page-title">Meus Dados</h1>
+    <h1 class="page-title">Meu Perfil</h1>
 
-    <div class="profile-card">
-        <div class="profile-avatar">
+    <div class="profile-card premium-card">
+        <div class="profile-avatar-modern">
             👤
         </div>
         <div class="profile-details">
@@ -36,9 +36,10 @@
         </div>
     </div>
 
-    <div class="profile-container">
-        <form id="form-perfil" class="profile-form">
+    <div class="profile-container premium-card">
+        <h3 class="summary-title profile-section-title">✏️ Editar Dados Pessoais</h3>
         
+        <form id="form-perfil" class="minimal-form clean-form">
             <div class="input-group">
                 <input type="text" id="perfil-nome" required placeholder=" ">
                 <label for="perfil-nome">Nome Completo</label>
@@ -68,16 +69,17 @@
 
             <button type="submit" class="btn btn-full">Salvar Alterações</button>
         </form>
+    </div>
 
-        <div class="security-card">
-        <h3>🔒 Alterar Senha</h3>
+    <div class="security-card premium-card">
+        <h3 class="summary-title profile-section-title">🔒 Segurança da Conta</h3>
         
-        <form id="change-password-form" class="minimal-form security-form">
+        <form id="change-password-form" class="minimal-form clean-form">
             <div class="input-group">
                 <input type="password" id="nova-senha" required placeholder=" ">
                 <label for="nova-senha">Digite a nova senha</label>
             </div>
-            <button type="submit" class="btn">Salvar Senha</button>
+            <button type="submit" class="btn btn-update-password">Atualizar Senha</button>
         </form>
     </div>
     </div>
@@ -113,5 +115,6 @@
     </footer>
   <script src="js/mock.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/perfil.js"></script>
 </body>
 </html>
