@@ -80,6 +80,58 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    const esqueciSenhaLink = document.getElementById('esqueci-senha-link');
+    const modalForgot = document.getElementById('forgot-password-modal');
+    const modalInbox = document.getElementById('inbox-modal');
+    const formRecover = document.getElementById('recover-form');
+
+    if (esqueciSenhaLink && modalForgot) {
+        esqueciSenhaLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            modalForgot.classList.remove('hidden');
+        });
+
+        document.getElementById('close-modal-btn').addEventListener('click', () => modalForgot.classList.add('hidden'));
+        document.getElementById('close-inbox-btn').addEventListener('click', () => modalInbox.classList.add('hidden'));
+        
+        modalForgot.addEventListener('click', (e) => {
+            if(e.target === modalForgot) modalForgot.classList.add('hidden');
+        });
+        modalInbox.addEventListener('click', (e) => {
+            if(e.target === modalInbox) modalInbox.classList.add('hidden');
+        });
+
+        formRecover.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const emailDigitado = document.getElementById('recover-email').value.trim();
+            let usuarios = JSON.parse(localStorage.getItem('raizes_users')) || [];
+            const index = usuarios.findIndex(u => u.email === emailDigitado);
+
+            if (index !== -1) {
+                const senhaTemporaria = "raizes123";
+                usuarios[index].senha = senhaTemporaria;
+                
+                localStorage.setItem('raizes_users', JSON.stringify(usuarios));
+                if (window.mockDB) window.mockDB.users = usuarios;
+
+                modalForgot.classList.add('hidden');
+                formRecover.reset();
+                showToast('Link de recuperação enviado!', 'success');
+                
+                document.getElementById('inbox-user-email').textContent = usuarios[index].email;
+                document.getElementById('inbox-user-name').textContent = usuarios[index].nome;
+                
+                setTimeout(() => {
+                    modalInbox.classList.remove('hidden');
+                }, 1500);
+                
+            } else {
+                showToast('E-mail não encontrado no nosso sistema.', 'error');
+            }
+        });
+    }
+
     const inputCpf = document.getElementById('perfil-cpf');
     const inputTelefone = document.getElementById('perfil-telefone');
 

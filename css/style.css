@@ -1045,3 +1045,86 @@ input, select { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px sol
     color: var(--primary);
     font-weight: bold;
 }
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 2.5rem;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 450px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    position: relative;
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+    text-align: center;
+}
+
+.modal-overlay.hidden .modal-content {
+    transform: translateY(30px);
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: #999;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-modal:hover {
+    color: var(--primary);
+}
+
+.inbox-content {
+    text-align: left;
+    background: #faf8f5;
+}
+
+.inbox-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+    color: var(--primary);
+}
+
+.inbox-icon { font-size: 1.8rem; }
+.inbox-body p { margin-bottom: 0.5rem; color: #444; }
+
+.temp-password {
+    background: #fff4e6;
+    color: var(--primary);
+    padding: 15px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 10px;
+    border: 2px dashed var(--primary);
+    margin: 1.5rem 0;
+    letter-spacing: 2px;
+}
