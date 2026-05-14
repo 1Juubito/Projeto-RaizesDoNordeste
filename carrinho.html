@@ -15,7 +15,7 @@
         <nav>
             <a href="unidades.html">📍 Unidades</a>
             <a href="cardapio.html">🍽️ Cardápio</a>
-            <a href="carrinho.html">🛒 Carrinho (<span id="cart-badge">0</span>)</a>
+            <a href="carrinho.html" class="active">🛒 Carrinho <span id="cart-badge" class="desktop-badge">0</span></a>
             <a href="fidelidade.html">⭐ Fidelidade</a>
             <a href="perfil.html">👤 Perfil</a>
             <a href="index.html" onclick="localStorage.removeItem('raizes_currentUser')">Sair</a>
@@ -95,16 +95,16 @@
             <span class="nav-icon">🍽️</span>
             <span class="nav-label">Menu</span>
         </a>
-        <a href="carrinho.html" class="nav-item">
+        <a href="carrinho.html" class="nav-item active">
             <span class="nav-icon">🛒</span>
-            <span class="nav-label">Carrinho</span>
+            <span class="nav-label active">Carrinho</span>
             <span class="mobile-badge cart-badge-global">0</span> 
         </a>
         <a href="fidelidade.html" class="nav-item">
             <span class="nav-icon">⭐</span>
             <span class="nav-label">Clube</span>
         </a>
-        <a href="perfil.html" class="nav-item active"> <span class="nav-icon">👤</span>
+        <a href="perfil.html" class="nav-item"> <span class="nav-icon">👤</span>
             <span class="nav-label">Perfil</span>
         </a>
     </nav>
