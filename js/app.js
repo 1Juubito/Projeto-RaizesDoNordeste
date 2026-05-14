@@ -447,6 +447,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentUser = JSON.parse(localStorage.getItem('raizes_currentUser'));
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     const paginasProtegidas = ['carrinho.html', 'fidelidade.html', 'perfil.html'];
+    const btnVisitante = document.getElementById('btn-visitante');
+    if (btnVisitante) {
+        btnVisitante.addEventListener('click', () => {
+            window.location.href = 'unidades.html';
+        });
+    }
 
     if (!currentUser && paginasProtegidas.includes(currentPage)) {
         window.location.href = 'index.html';
@@ -455,7 +461,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!currentUser && currentPage !== 'index.html') {
         const linksProtegidos = document.querySelectorAll('a[href="carrinho.html"], a[href="fidelidade.html"], a[href="perfil.html"]');
-
         linksProtegidos.forEach(link => {
             link.classList.add('guest-disabled'); 
             link.addEventListener('click', (e) => {
@@ -463,18 +468,15 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        const btnSairDesktop = document.querySelector('a[href="index.html"][onclick*="removeItem"]');
+        const btnSairDesktop = document.getElementById('btn-logout');
         if (btnSairDesktop) {
-            btnSairDesktop.textContent = '🔒 Fazer Login';
-            btnSairDesktop.removeAttribute('onclick'); 
+            btnSairDesktop.style.display = 'none';
         }
-    }
 
-    const btnVisitante = document.getElementById('btn-visitante');
-    if (btnVisitante) {
-        btnVisitante.addEventListener('click', () => {
-            window.location.href = 'unidades.html';
-        });
+        const btnSairAntigo = document.querySelector('a[href="index.html"][onclick*="removeItem"]');
+        if (btnSairAntigo) {
+            btnSairAntigo.style.display = 'none';
+        }
     }
 });
 
