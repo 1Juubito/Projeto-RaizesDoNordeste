@@ -411,7 +411,6 @@ document.addEventListener('click', (e) => {
         const btn = e.target;
         const currentUser = JSON.parse(localStorage.getItem('raizes_currentUser'));
 
-        // 1. Bloqueio para Visitantes
         if (!currentUser) {
             if (typeof mostrarPopupVisitante === 'function') {
                 mostrarPopupVisitante();
@@ -443,19 +442,68 @@ document.addEventListener('click', (e) => {
     }
 });
 
+
+document.addEventListener('DOMContentLoaded', () => {
+    const currentUser = JSON.parse(localStorage.getItem('raizes_currentUser'));
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const paginasProtegidas = ['carrinho.html', 'fidelidade.html', 'perfil.html'];
+
+    if (!currentUser && paginasProtegidas.includes(currentPage)) {
+        window.location.href = 'index.html';
+        return; 
+    }
+
+    if (!currentUser && currentPage !== 'index.html') {
+        const linksProtegidos = document.querySelectorAll('a[href="carrinho.html"], a[href="fidelidade.html"], a[href="perfil.html"]');
+
+        linksProtegidos.forEach(link => {
+            link.classList.add('guest-disabled'); 
+            link.addEventListener('click', (e) => {
+                e.preventDefault(); 
+            });
+        });
+
+        const btnSairDesktop = document.querySelector('a[href="index.html"][onclick*="removeItem"]');
+        if (btnSairDesktop) {
+            btnSairDesktop.textContent = '🔒 Fazer Login';
+            btnSairDesktop.removeAttribute('onclick'); 
+        }
+    }
+
+    const btnVisitante = document.getElementById('btn-visitante');
+    if (btnVisitante) {
+        btnVisitante.addEventListener('click', () => {
+            window.location.href = 'unidades.html';
+        });
+    }
+});
+
 function mostrarPopupVisitante() {
     const overlay = document.createElement('div');
     overlay.className = 'modal-visitante-overlay';
-    overlay.innerHTML = `
-        <div class="modal-visitante-box">
-            <div class="modal-visitante-icon">🔒</div>
-            <h3 class="modal-visitante-title">Quase lá!</h3>
-            <p class="modal-visitante-text">Para montar o seu pedido, você precisa criar uma conta.</p>
-            <div class="modal-visitante-actions">
-                <button onclick="this.closest('.modal-visitante-overlay').remove()" class="btn-modal-secondary">Agora Não</button>
-                <button onclick="window.location.href='index.html'" class="btn-modal-primary">Fazer Login</button>
-            </div>
+    
+    const modal = document.createElement('div');
+    modal.className = 'modal-visitante-box';
+    modal.innerHTML = `
+        <div class="modal-visitante-icon">🔒</div>
+        <h3 class="modal-visitante-title">Quase lá!</h3>
+        <p class="modal-visitante-text">
+            Para adicionar delícias ao seu carrinho e montar o seu pedido, você precisa criar uma conta rapidinho.
+        </p>
+        <div class="modal-visitante-actions">
+            <button id="btn-fechar-modal" class="btn-modal-secondary">Agora Não</button>
+            <button id="btn-login-modal" class="btn-modal-primary">Fazer Login</button>
         </div>
     `;
+    
+    overlay.appendChild(modal);
     document.body.appendChild(overlay);
+
+    document.getElementById('btn-fechar-modal').addEventListener('click', () => {
+        overlay.remove();
+    });
+
+    document.getElementById('btn-login-modal').addEventListener('click', () => {
+        window.location.href = 'index.html';
+    });
 }

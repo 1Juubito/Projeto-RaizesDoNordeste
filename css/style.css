@@ -1874,3 +1874,105 @@ input, select { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px sol
     color: #ffffff;
     box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
 }
+
+.guest-disabled {
+    color: #a0a0a0 !important;
+    cursor: not-allowed !important;
+    opacity: 0.5 !important;
+    pointer-events: auto !important;
+    text-decoration: none !important;
+}
+
+.guest-disabled .nav-icon,
+.guest-disabled .mobile-badge,
+.guest-disabled .desktop-badge {
+    filter: grayscale(100%) !important;
+    background-color: #e0e0e0 !important;
+    color: #999 !important;
+    opacity: 0.5;
+}
+
+.modal-visitante-overlay {
+    position: fixed;
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-visitante-box {
+    background: #ffffff;
+    padding: 30px 20px;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 90%;
+    width: 340px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+.modal-visitante-icon {
+    font-size: 3rem; 
+    margin-bottom: 10px;
+}
+
+.modal-visitante-title {
+    color: #2c3e50; 
+    margin-bottom: 10px; 
+    font-size: 1.3rem;
+}
+
+.modal-visitante-text {
+    color: #7f8c8d; 
+    margin-bottom: 25px; 
+    font-size: 0.95rem; 
+    line-height: 1.5;
+}
+
+.modal-visitante-actions {
+    display: flex; 
+    gap: 10px; 
+    justify-content: center;
+}
+
+.btn-modal-secondary {
+    flex: 1; 
+    padding: 12px; 
+    border: 1px solid #ccc; 
+    background: transparent; 
+    color: #7f8c8d; 
+    border-radius: 8px; 
+    cursor: pointer; 
+    font-weight: bold; 
+    transition: background-color 0.2s ease;
+}
+
+.btn-modal-secondary:hover {
+    background-color: #f4f6f8;
+    color: #333;
+}
+
+.btn-modal-primary {
+    flex: 1; 
+    padding: 12px; 
+    border: none; 
+    background: var(--primary, #e74c3c); 
+    color: white; 
+    border-radius: 8px; 
+    cursor: pointer; 
+    font-weight: bold; 
+    transition: opacity 0.2s ease;
+}
+
+.btn-modal-primary:hover {
+    opacity: 0.85;
+}
