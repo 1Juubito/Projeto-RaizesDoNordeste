@@ -383,16 +383,25 @@ if (numeroInput) {
 
 function atualizarBadgeGlobal() {
     const cart = JSON.parse(localStorage.getItem('raizes_cart')) || [];
-    
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-    
-    const badge = document.getElementById('cart-badge');
-    
-    if (badge) {
+    const badgeDesktop = document.getElementById('cart-badge');
+    if (badgeDesktop) badgeDesktop.textContent = totalItems;
+
+    const badgesMobile = document.querySelectorAll('.cart-badge-global');
+    badgesMobile.forEach(badge => {
         badge.textContent = totalItems;
-    }
+    });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     atualizarBadgeGlobal();
 });
+
+const btnLogoutPerfil = document.getElementById('btn-logout-perfil');
+
+if (btnLogoutPerfil) {
+    btnLogoutPerfil.addEventListener('click', () => {
+        localStorage.removeItem('raizes_currentUser');
+        window.location.href = 'index.html';
+    });
+}
