@@ -170,6 +170,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const novoCpf = document.getElementById('perfil-cpf').value;
             const novoNascimento = document.getElementById('perfil-nascimento').value;
             const novoTelefone = document.getElementById('perfil-telefone').value;
+            const novoCep = document.getElementById('perfil-cep').value;
+            const novoLogradouro = document.getElementById('perfil-logradouro').value;
+            const novoNumero = document.getElementById('perfil-numero').value;
+            const novoBairro = document.getElementById('perfil-bairro').value;
+            const novoCidade = document.getElementById('perfil-cidade').value;
+            const novoComplemento = document.getElementById('perfil-complemento').value;
 
             let userLogado = JSON.parse(localStorage.getItem('raizes_currentUser'));
 
@@ -178,6 +184,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 userLogado.cpf = novoCpf;
                 userLogado.nascimento = novoNascimento;
                 userLogado.telefone = novoTelefone;
+                userLogado.cep = novoCep;
+                userLogado.logradouro = novoLogradouro;
+                userLogado.numero = novoNumero;
+                userLogado.bairro = novoBairro;
+                userLogado.cidade = novoCidade;
+                userLogado.complemento = novoComplemento;
 
                 localStorage.setItem('raizes_currentUser', JSON.stringify(userLogado));
 
@@ -192,10 +204,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     localStorage.setItem('raizes_users', JSON.stringify(usuarios));
 
                     if (window.mockDB) {
-                    window.mockDB.users = usuarios;
+                        window.mockDB.users = usuarios;
                     }
                     
-                    showToast('Dados atualizados com sucesso! 🌵', 'success');
+                    showToast('Dados e endereço atualizados com sucesso! 🌵', 'success');
                 } else {
                     showToast('Erro ao atualizar banco de dados.', 'error');
                 }
@@ -254,6 +266,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const inputCpf = document.getElementById('perfil-cpf');
             const inputNascimento = document.getElementById('perfil-nascimento');
             const inputTelefone = document.getElementById('perfil-telefone');
+            const inputCep = document.getElementById('perfil-cep');
+            const inputLogradouro = document.getElementById('perfil-logradouro');
+            const inputNumero = document.getElementById('perfil-numero');
+            const inputBairro = document.getElementById('perfil-bairro');
+            const inputCidade = document.getElementById('perfil-cidade');
+            const inputComplemento = document.getElementById('perfil-complemento');
 
             if (inputNome) inputNome.value = userLogado.nome || '';
             if (inputEmail) inputEmail.value = userLogado.email || '';
@@ -263,7 +281,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 if (userLogado.cpf && userLogado.cpf.length >= 11) {
                     inputCpf.disabled = true;
-                    inputCpf.style.color = "#999";
                 }
             }
             
@@ -272,13 +289,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (userLogado.nascimento) {
                     inputNascimento.disabled = true;
-                    inputNascimento.style.color = "#999";
                 }
             }
             
             if (inputTelefone) {
                 inputTelefone.value = window.mascaraTelefone(userLogado.telefone || '');
             }
+
+            if (inputCep) inputCep.value = userLogado.cep || '';
+            if (inputLogradouro) inputLogradouro.value = userLogado.logradouro || '';
+            if (inputNumero) inputNumero.value = userLogado.numero || '';
+            if (inputBairro) inputBairro.value = userLogado.bairro || '';
+            if (inputCidade) inputCidade.value = userLogado.cidade || '';
+            if (inputComplemento) inputComplemento.value = userLogado.complemento || '';
 
         } else {
             window.location.href = 'index.html';
@@ -336,6 +359,27 @@ window.mascaraTelefone = function(valor) {
                 .slice(0, 15);
     }
 };
+
+const cepInput = document.getElementById('perfil-cep');
+const numeroInput = document.getElementById('perfil-numero');
+
+if (cepInput) {
+    cepInput.addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, ''); 
+        
+        if (value.length > 5) {
+            value = value.replace(/^(\d{5})(\d)/, '$1-$2'); 
+        }
+        
+        e.target.value = value;
+    });
+}
+
+if (numeroInput) {
+    numeroInput.addEventListener('input', function(e) {
+        e.target.value = e.target.value.replace(/\D/g, '');
+    });
+}
 
 function atualizarBadgeGlobal() {
     const cart = JSON.parse(localStorage.getItem('raizes_cart')) || [];
