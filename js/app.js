@@ -405,3 +405,57 @@ if (btnLogoutPerfil) {
         window.location.href = 'index.html';
     });
 }
+
+document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('btn-add-cart')) {
+        const btn = e.target;
+        const currentUser = JSON.parse(localStorage.getItem('raizes_currentUser'));
+
+        // 1. Bloqueio para Visitantes
+        if (!currentUser) {
+            if (typeof mostrarPopupVisitante === 'function') {
+                mostrarPopupVisitante();
+            } else {
+                alert('Faça login para adicionar itens ao carrinho!');
+            }
+            return;
+        }
+
+        const id = btn.getAttribute('data-id');
+        const name = btn.getAttribute('data-name');
+        const price = parseFloat(btn.getAttribute('data-price'));
+        const qtyInput = document.getElementById(`qty-${id}`);
+        const quantity = qtyInput ? parseInt(qtyInput.value) : 1;
+
+        let cart = JSON.parse(localStorage.getItem('raizes_cart')) || [];
+        const index = cart.findIndex(item => item.id === id);
+
+        if (index !== -1) {
+            cart[index].quantity += quantity;
+        } else {
+            cart.push({ id, name, price, quantity });
+        }
+        localStorage.setItem('raizes_cart', JSON.stringify(cart));
+        if (typeof atualizarBadgeGlobal === 'function') atualizarBadgeGlobal();
+        if (typeof showToast === 'function') {
+            showToast(`${quantity}x ${name} adicionado! 🛒`, 'success');
+        }
+    }
+});
+
+function mostrarPopupVisitante() {
+    const overlay = document.createElement('div');
+    overlay.className = 'modal-visitante-overlay';
+    overlay.innerHTML = `
+        <div class="modal-visitante-box">
+            <div class="modal-visitante-icon">🔒</div>
+            <h3 class="modal-visitante-title">Quase lá!</h3>
+            <p class="modal-visitante-text">Para montar o seu pedido, você precisa criar uma conta.</p>
+            <div class="modal-visitante-actions">
+                <button onclick="this.closest('.modal-visitante-overlay').remove()" class="btn-modal-secondary">Agora Não</button>
+                <button onclick="window.location.href='index.html'" class="btn-modal-primary">Fazer Login</button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(overlay);
+}

@@ -31,9 +31,7 @@ function renderCart() {
     container.innerHTML = cart.map((item, index) => {
         const itemTotal = item.price * item.quantity;
         subtotal += itemTotal;
-        
-        // Mapeamento de imagens baseado no nome do produto (Truque para não precisar gravar a URL no localStorage)
-        let imgSrc = 'img/baiao.jpg'; // Imagem padrão caso não encontre
+        let imgSrc = 'img/baiao.jpg';
         if (item.name.includes('Carne')) imgSrc = 'img/carne.jpg';
         if (item.name.includes('Moqueca')) imgSrc = 'img/moqueca.jpg';
         if (item.name.includes('Pastel')) imgSrc = 'img/pastel.jpg';
