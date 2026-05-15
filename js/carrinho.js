@@ -169,10 +169,18 @@ function removeItem(index) {
 
 function checkout() {
     const cart = JSON.parse(localStorage.getItem('raizes_cart')) || [];
+    const currentUser = JSON.parse(localStorage.getItem('raizes_currentUser'));
+
     if (cart.length === 0) {
         alert('Adicione itens ao carrinho antes de finalizar!');
         return;
     }
+
+    if (!currentUser || !currentUser.telefone || !currentUser.endereco) {
+        mostrarPopupPerfilIncompleto();
+        return; 
+    }
+
     window.location.href = 'pagamento.html';
 }
 
@@ -193,10 +201,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (!user) {
                 showToast('Opa! Você precisa estar logado para finalizar o pedido e ganhar pontos! 🌵', 'warning');
-                
                 setTimeout(() => {
                     window.location.href = 'index.html';
                 }, 2500); 
+                return;
+            }
+
+            if (!user.telefone || !user.logradouro || !user.numero || !user.bairro) {
+                mostrarPopupPerfilIncompleto();
                 return;
             }
 
@@ -204,3 +216,35 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+function mostrarPopupPerfilIncompleto() {
+    if (document.querySelector('.modal-perfil-overlay')) return;
+
+    const overlay = document.createElement('div');
+    overlay.className = 'modal-perfil-overlay';
+    
+    const modal = document.createElement('div');
+    modal.className = 'modal-visitante-box'; 
+    modal.innerHTML = `
+        <div class="modal-visitante-icon">📍</div>
+        <h3 class="modal-visitante-title" style="color: #b91c1c;">Falta pouco para o seu pedido!</h3>
+        <p class="modal-visitante-text">
+            Para garantirmos que sua comida chegue quentinha no lugar certo, precisamos que você preencha seu <b>endereço</b> e <b>telefone</b> no perfil.
+        </p>
+        <div class="modal-visitante-actions">
+            <button id="btn-fechar-perfil" class="btn-modal-secondary">Voltar</button>
+            <button id="btn-ir-perfil" class="btn-modal-primary">Completar Perfil</button>
+        </div>
+    `;
+    
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
+
+    document.getElementById('btn-fechar-perfil').onclick = () => {
+        overlay.remove();
+    };
+
+    document.getElementById('btn-ir-perfil').onclick = () => {
+        window.location.href = 'perfil.html';
+    };
+}
