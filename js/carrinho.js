@@ -1,5 +1,6 @@
 function renderCart() {
     const cart = JSON.parse(localStorage.getItem('raizes_cart')) || [];
+    const currentUser = JSON.parse(localStorage.getItem('raizes_currentUser')); 
     const container = document.getElementById('cart-items-container');
 
     if (!container) return;
@@ -22,13 +23,13 @@ function renderCart() {
         if (linhaDesconto) linhaDesconto.classList.add('hidden');
         if (promoAlert) promoAlert.classList.add('hidden');
         
-        atualizarBadgeGlobal()
+        atualizarBadgeGlobal();
         return;
     }
 
     let subtotal = 0;
 
-    container.innerHTML = cart.map((item, index) => {
+    let htmlItens = cart.map((item, index) => {
         const itemTotal = item.price * item.quantity;
         subtotal += itemTotal;
         let imgSrc = 'img/baiao.jpg';
@@ -45,12 +46,10 @@ function renderCart() {
                 <div class="cart-item-img-box">
                     <img src="${imgSrc}" alt="${item.name}">
                 </div>
-                
                 <div class="cart-item-details">
                     <strong class="item-title">${item.name}</strong>
                     <span class="item-unit-price">R$ ${item.price.toFixed(2)}</span>
                 </div>
-                
                 <div class="cart-item-controls">
                     <div class="qty-modern">
                         <button onclick="updateQty(${index}, -1)" class="btn-qty">-</button>
@@ -58,17 +57,60 @@ function renderCart() {
                         <button onclick="updateQty(${index}, 1)" class="btn-qty">+</button>
                     </div>
                 </div>
-                
                 <div class="cart-item-total">
                     R$ ${itemTotal.toFixed(2)}
                 </div>
-                
                 <button class="btn-remove-modern" onclick="removeItem(${index})" title="Remover item">
                     &times;
                 </button>
             </div>
         `;
     }).join('');
+
+    const pontos = currentUser ? currentUser.points || 0 : 0;
+    let brindesHTML = '';
+
+    if (pontos >= 101) { 
+        brindesHTML += `
+            <div class="cart-item-modern brinde-item brinde-prata-box">
+                <div class="cart-item-img-box">
+                    <img src="img/suco.jpg" alt="Suco">
+                </div>
+                <div class="cart-item-details">
+                    <strong class="item-title">🎁 Brinde Prata: Suco de Caju</strong>
+                    <span class="item-unit-price">Clube Raízes</span>
+                </div>
+                <div class="cart-item-controls">
+                    <span class="qty-value brinde-prata-text">1</span>
+                </div>
+                <div class="cart-item-total brinde-prata-text">
+                    Grátis
+                </div>
+            </div>
+        `;
+    }
+
+    if (pontos > 300) { 
+        brindesHTML += `
+            <div class="cart-item-modern brinde-item brinde-ouro-box">
+                <div class="cart-item-img-box">
+                    <img src="img/pudim.jpg" alt="Pudim">
+                </div>
+                <div class="cart-item-details">
+                    <strong class="item-title">🎁 Brinde Ouro: Pudim de Leite</strong>
+                    <span class="item-unit-price">Clube Raízes</span>
+                </div>
+                <div class="cart-item-controls">
+                    <span class="qty-value brinde-ouro-text">1</span>
+                </div>
+                <div class="cart-item-total brinde-ouro-text">
+                    Grátis
+                </div>
+            </div>
+        `;
+    }
+
+    container.innerHTML = htmlItens + brindesHTML;
 
     let taxaEntrega = 5.00;
     let desconto = 0;
@@ -103,7 +145,7 @@ function renderCart() {
     document.getElementById('subtotal').textContent = `R$ ${subtotal.toFixed(2)}`;
     document.getElementById('total').textContent = `R$ ${totalFinal.toFixed(2)}`;
     
-    atualizarBadgeGlobal()
+    atualizarBadgeGlobal();
 }
 
 function updateQty(index, change) {
