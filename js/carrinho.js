@@ -167,33 +167,16 @@ function removeItem(index) {
     renderCart();
 }
 
-function checkout() {
-    const cart = JSON.parse(localStorage.getItem('raizes_cart')) || [];
-    const currentUser = JSON.parse(localStorage.getItem('raizes_currentUser'));
-
-    if (cart.length === 0) {
-        alert('Adicione itens ao carrinho antes de finalizar!');
-        return;
-    }
-
-    if (!currentUser || !currentUser.telefone || !currentUser.endereco) {
-        mostrarPopupPerfilIncompleto();
-        return; 
-    }
-
-    window.location.href = 'pagamento.html';
-}
-
 document.addEventListener('DOMContentLoaded', () => {
     renderCart();
     
     const btnCheckout = document.getElementById('btn-checkout');
+    
     if (btnCheckout) {
         btnCheckout.addEventListener('click', () => {
             const cart = JSON.parse(localStorage.getItem('raizes_cart')) || [];
-
             if (cart.length === 0) {
-                showToast('O seu carrinho está vazio! Escolha uma delícia no cardápio primeiro.', 'warning');
+                showToast('O seu carrinho está vazio! Escolha uma delícia no cardápio primeiro. 🛒', 'warning');
                 return;
             }
 
