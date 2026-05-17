@@ -2033,3 +2033,254 @@ input, select { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px sol
     font-style: italic;
     margin-left: 5px;
 }
+
+.totem-body {
+    background-color: #121816; 
+    overflow: hidden;
+    user-select: none;
+}
+
+.totem-container {
+    display: grid;
+    grid-template-columns: 1.8fr 1.2fr;
+    height: 100vh;
+    width: 100vw;
+    gap: 15px;
+    padding: 15px;
+}
+
+.totem-welcome-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(rgba(44, 30, 22, 0.9), rgba(211, 84, 0, 0.95)), url('img/fundo-login.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    transition: opacity 0.5s ease;
+}
+
+.totem-welcome-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.totem-logo-giant {
+    font-size: 4.5rem;
+    margin-bottom: 20px;
+    animation: pulseTotem 2s infinite;
+}
+
+.totem-touch-prompt {
+    font-size: 2rem;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 15px 40px;
+    border-radius: 50px;
+    border: 2px solid #fff;
+    margin-top: 40px;
+}
+
+.totem-feed {
+    background: var(--bg-light);
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.totem-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 15px;
+}
+
+.totem-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.totem-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 2px solid transparent;
+}
+
+.totem-card:active {
+    border-color: var(--primary);
+    transform: scale(0.98);
+}
+
+.totem-card-img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 10px;
+}
+
+.totem-card h3 {
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    margin-bottom: 5px;
+}
+
+.totem-card .price {
+    font-size: 1.4rem;
+    color: var(--primary);
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.btn-totem-add {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+}
+
+.totem-sidebar {
+    background: #fff;
+    border-radius: 20px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    height: 100%;
+}
+
+.totem-cart-title {
+    font-size: 1.6rem;
+    color: var(--text-dark);
+    border-bottom: 2px dashed #eee;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.totem-cart-items {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 15px;
+}
+
+.totem-cart-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.totem-qty-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f5f5f5;
+    padding: 5px;
+    border-radius: 30px;
+}
+
+.btn-totem-qty {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--primary);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.totem-total-box {
+    background: var(--bg-light);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.totem-total-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--accent);
+}
+
+.btn-totem-checkout {
+    background: #27ae60;
+    color: white;
+    font-size: 1.6rem;
+    padding: 20px;
+    border-radius: 15px;
+    border: none;
+    font-weight: bold;
+    box-shadow: 0 8px 20px rgba(39, 174, 96, 0.3);
+    width: 100%;
+    cursor: pointer;
+}
+
+.btn-totem-checkout:active {
+    transform: scale(0.97);
+}
+
+.totem-timeout-warning {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.totem-timeout-box {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 450px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+.totem-lgpd-footer {
+    font-size: 0.8rem;
+    color: #aaa;
+    text-align: center;
+    margin-top: 10px;
+}
+
+@keyframes pulseTotem {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+    100% { transform: scale(1); }
+}
+
+@keyframes spin { 
+    0% { transform: rotate(0deg); } 
+    100% { transform: rotate(360deg); } 
+}

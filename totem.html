@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raízes do Nordeste - Totem de Autoatendimento</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="totem-body">
+
+    <div id="welcome-overlay" class="totem-welcome-overlay" onclick="iniciarAtendimento()">
+        <div class="totem-logo-giant">🌵 Raízes do Nordeste</div>
+        <p style="font-size: 1.5rem; opacity: 0.9;">O sabor autêntico da nossa terra, na velocidade que você precisa.</p>
+        <div class="totem-touch-prompt">TOQUE NA TELA PARA COMEÇAR</div>
+    </div>
+
+    <div class="totem-container">
+        
+        <div class="totem-feed">
+            <div class="totem-header">
+                <h1 style="color: var(--primary);">Selecione suas Delícias</h1>
+                <span id="totem-timer" style="background: #e74c3c; color: white; padding: 5px 15px; border-radius: 20px; font-weight: bold;">Tempo: 60s</span>
+            </div>
+
+            <div class="totem-grid">
+                <div class="totem-card">
+                    <img src="img/baiao.jpg" class="totem-card-img" alt="Baião de Dois">
+                    <h3>Baião de Dois</h3>
+                    <p class="price">R$ 28,90</p>
+                    <button class="btn-totem-add" onclick="adicionarAoTotem('Baião de Dois', 28.90)">Adicionar 🛒</button>
+                </div>
+
+                <div class="totem-card">
+                    <img src="img/carne.jpg" class="totem-card-img" alt="Carne de Sol">
+                    <h3>Carne de Sol</h3>
+                    <p class="price">R$ 45,90</p>
+                    <button class="btn-totem-add" onclick="adicionarAoTotem('Carne de Sol', 45.90)">Adicionar 🛒</button>
+                </div>
+
+                <div class="totem-card">
+                    <img src="img/suco.jpg" class="totem-card-img" alt="Suco de Caju">
+                    <h3>Suco de Caju</h3>
+                    <p class="price">R$ 7,90</p>
+                    <button class="btn-totem-add" onclick="adicionarAoTotem('Suco de Caju', 7.90)">Adicionar 🛒</button>
+                </div>
+
+                <div class="totem-card">
+                    <img src="img/moqueca.jpg" class="totem-card-img" alt="Moqueca de Camarão">
+                    <h3>Moqueca de Peixe</h3>
+                    <p class="price">R$ 52,90</p>
+                    <button class="btn-totem-add" onclick="adicionarAoTotem('Moqueca de Peixe', 52.90)">Adicionar 🛒</button>
+                </div>
+
+                <div class="totem-card">
+                    <img src="img/pastel.jpg" class="totem-card-img" alt="Pastéis">
+                    <h3>Pastel Crocante</h3>
+                    <p class="price">R$ 12,90</p>
+                    <button class="btn-totem-add" onclick="adicionarAoTotem('Pastel Crocante', 12.90)">Adicionar 🛒</button>
+                </div>
+
+                    <div class="totem-card">
+                    <img src="img/pudim.jpg" class="totem-card-img" alt="Sobremesa Pudim">
+                    <h3>Pudim de Leite</h3>
+                    <p class="price">R$ 9,90</p>
+                    <button class="btn-totem-add" onclick="adicionarAoTotem('Pudim de Leite', 9.90)">Adicionar 🛒</button>
+                </div>
+
+                <div class="totem-card">
+                    <img src="img/cartola.jpg" class="totem-card-img" alt="Sobremesa Cartola">
+                    <h3>Cartola</h3>
+                    <p class="price">R$ 14,90</p>
+                    <button class="btn-totem-add" onclick="adicionarAoTotem('Cartola', 14.90)">Adicionar 🛒</button>
+                </div>
+
+                <div class="totem-card">
+                    <img src="img/refri.jpg" class="totem-card-img" alt="Refrigerante">
+                    <h3>Refrigerante Lata</h3>
+                    <p class="price">R$ 6,50</p>
+                    <button class="btn-totem-add" onclick="adicionarAoTotem('Refrigerante Lata', 6.50)">Adicionar 🛒</button>
+                </div>
+            </div> </div> <div class="totem-sidebar">
+            <div class="totem-cart-title">
+                <span>🛒 Seu Pedido</span>
+                <button onclick="limparTotem()" style="background:none; border:none; color:#e74c3c; font-weight:bold; cursor:pointer;">Limpar</button>
+            </div>
+
+            <div id="totem-cart-items" class="totem-cart-items">
+                <p style="color: #999; text-align: center; margin-top: 50px;">O carrinho está vazio.<br>Toque em um produto para adicionar!</p>
+            </div>
+
+            <div style="margin-bottom: 15px; background: #fafafa; padding: 12px; border-radius: 12px; border: 1px dashed #ddd;">
+                <label style="font-size: 0.85rem; font-weight: bold; color: var(--text-dark); display: block; margin-bottom: 5px;">CPF para o Clube de Fidelidade? (Opcional)</label>
+                <input type="text" id="totem-cpf" placeholder="Digite apenas números" style="margin:0; padding:10px; font-size:1.1rem; text-align:center;" maxlength="11">
+            </div>
+
+            <div class="totem-total-box">
+                <div class="totem-total-row">
+                    <span>TOTAL:</span>
+                    <span id="totem-total-value">R$ 0,00</span>
+                </div>
+            </div>
+
+            <button class="btn-totem-checkout" onclick="finalizarPedidoTotem()">PAGAR NO CARTÃO 💳</button>
+            
+            <div class="totem-lgpd-footer">
+                🔒 Em conformidade com a LGPD. Não armazenamos CPF após a emissão do cupom.
+            </div>
+        </div>
+    </div>
+
+    <div id="timeout-warning" class="totem-timeout-warning hidden">
+        <div class="totem-timeout-box">
+            <h2 style="color: var(--primary); margin-bottom: 15px;">Ainda está aí? 🤔</h2>
+            <p style="font-size: 1.1rem; color: #555; margin-bottom: 25px;">Por falta de atividade, o totem irá resetar para a tela inicial em alguns segundos.</p>
+            <button class="btn" onclick="continuarAtendimento()">CONTINUAR PEDINDO</button>
+        </div>
+    </div>
+
+    <script src="js/totem.js"></script>
+</body>
+</html>
