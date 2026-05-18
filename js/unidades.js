@@ -4,26 +4,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const unidades = [
         {
             id: 1,
-            nome: 'Matriz - Paranaguá',
-            endereco: 'Rua Faria Sobrinho, Centro Histórico',
-            horario: 'Aberto 24 horas',
+            nome: 'Unidade Salvador - Pelourinho',
+            endereco: 'Largo do Cruzeiro de São Francisco, 7 - Centro Histórico',
+            horario: '11:00 às 23:00',
             distancia: '1.2 km',
             aberto: true
         },
         {
             id: 2,
-            nome: 'Praia - Matinhos',
-            endereco: 'Av. Atlântica, 1000 - Caiobá',
+            nome: 'Unidade Recife - Boa Viagem',
+            endereco: 'Av. Boa Viagem, 2120 - Boa Viagem',
             horario: '10:00 às 22:00',
-            distancia: '45 km',
+            distancia: '4.5 km',
             aberto: true 
         },
         {
             id: 3,
-            nome: 'Capital - Curitiba',
-            endereco: 'Av. Vicente Machado, Batel',
+            nome: 'Unidade Fortaleza - Meireles',
+            endereco: 'Av. Beira Mar, 3220 - Meireles',
             horario: '18:00 às 00:00',
-            distancia: '90 km',
+            distancia: '9.0 km',
             aberto: false
         }
     ];
