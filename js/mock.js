@@ -10,7 +10,7 @@ window.mockDB = {
         { id: 'p5', name: 'Suco de Caju', price: 7.90, description: 'Suco natural de caju.', image: 'img/suco.jpg' },
         { id: 'p6', name: 'Refrigerante Lata', price: 6.50, description: 'Lata 350ml bem gelada.', image: 'img/refri.jpg' },
         { id: 'p7', name: 'Pudim de Leite', price: 9.90, description: 'Pudim caseiro com calda de caramelo.', image: 'img/pudim.jpg' },
-        { id: 'p8', name: 'Cartola', price: 14.90, description: 'Manga, queijo coalho e canela.', image: 'img/cartola.jpg' }
+        { id: 'p8', name: 'Cartola', price: 14.90, description: 'Banana Frita, quejo coalho e canela.', image: 'img/cartola.jpg' }
     ]
 };
 
